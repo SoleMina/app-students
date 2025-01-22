@@ -14,7 +14,6 @@ import {
 })
 export class HighlightDirective implements OnChanges {
   @Input() appHighlight = 'yellow';
-  @Input() bolder = false;
 
   @Output() colorUpdated = new EventEmitter();
 
