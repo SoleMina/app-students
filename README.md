@@ -4,10 +4,10 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ### 📁 Development
 
--Angular material
-*Bootstrap
-+ReactiveForms
--Modules
-*Directives
+- Angular Material
+- Bootstrap
+- Reactive Forms
+- Modules
+- Directives
 
 ### Notes
