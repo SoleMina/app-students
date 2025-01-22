@@ -26,6 +26,14 @@ export class StudentsComponent {
       course: 'React',
       teacher: 'Eduardo Pinedo',
     },
+    {
+      id: 3,
+      name: 'Leo',
+      lastname: 'Estrada',
+      email: 'leoestrada@gmail.com',
+      course: 'React',
+      teacher: 'Eduardo Pinedo',
+    },
   ];
 
   addStudent(newStudent: any) {

@@ -2,7 +2,6 @@
   <div class="row form-student">
     <form [formGroup]="studentForm" class="w-full" (ngSubmit)="onSubmit()">
       <img src="user.png" alt="User logo" width="100" />
-      <!-- <mat-icon matListItemIcon>person</mat-icon> -->
       <h2 class="m-4">
         {{ student ? "Edit Student Form" : "Register Student Form" }}
       </h2>
@@ -39,7 +38,5 @@
         </div>
       </div>
     </form>
-    <!-- <pre>{{ studentForm.value | json }}</pre> -->
-    <!-- <pre>{{ students | json }}</pre> -->
   </div>
 </div>

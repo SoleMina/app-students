@@ -69,12 +69,12 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
     this.matDialog.open(StudentDialogFormComponent);
   }
 
+  //Student
   deleteStudent(id: any) {
     this.students = this.students.filter((student) => student.id !== id);
     this.dataSource.data = this.students;
   }
   editStudent(element: Student): void {
-    console.log(element, 'element edittt');
     const dialogRef = this.matDialog.open(StudentDialogFormComponent, {
       width: '750px',
       data: element,
@@ -94,7 +94,6 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
     );
     if (index > -1) {
       this.students[index] = updatedStudent;
-      console.log(this.dataSource.data, 'updateee');
       this.dataSource.data = [...this.students]; // Refresh the table
     }
   }
