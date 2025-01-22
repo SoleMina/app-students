@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  height: 100vh; /* Full viewport height */
+}
+
+.example-container {
+  height: 100%; /* Ensures the container fills the height */
+}
+
+.example-sidenav {
+  height: 100%; /* Ensures the drawer stretches */
+  background: #f4f4f4; /* Optional: Background color for better visibility */
+}
+
+.example-sidenav-content {
+  height: 100%; /* Ensures the content fills height */
+}

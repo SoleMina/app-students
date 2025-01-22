@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row form-student">
+    <form [formGroup]="studentForm" class="w-full" (ngSubmit)="onSubmit()">
+      <h2 class="m-4">Register Student Form</h2>
+      <div class="row">
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input formControlName="name" matInput />
+        </mat-form-field>
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Lastname</mat-label>
+          <input formControlName="lastname" matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Course</mat-label>
+          <mat-select disableRipple>
+            <mat-option value="1">Angular</mat-option>
+            <mat-option value="2">Vue</mat-option>
+            <mat-option value="3">React</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Teacher</mat-label>
+          <input formControlName="teacher" matInput />
+        </mat-form-field>
+        <div class="col-12">
+          <button mat-flat-button type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+    <pre>{{ studentForm.value | json }}</pre>
+    <pre>{{ students | json }}</pre>
+  </div>
+</div>
