@@ -10,10 +10,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+
 import { StudentFormComponent } from './components/student-form/student-form.component';
+import { StudentTableComponent } from './components/student-table/student-table.component';
 
 @NgModule({
-  declarations: [StudentsComponent, StudentFormComponent],
+  declarations: [
+    StudentsComponent,
+    StudentFormComponent,
+    StudentTableComponent,
+  ],
   imports: [
     CommonModule,
     StudentsRoutingModule,
@@ -23,6 +32,11 @@ import { StudentFormComponent } from './components/student-form/student-form.com
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatPaginator,
+    MatPaginatorModule,
+    MatSort,
+    MatSortModule,
+    MatTableModule,
   ],
   exports: [StudentsComponent],
 })
