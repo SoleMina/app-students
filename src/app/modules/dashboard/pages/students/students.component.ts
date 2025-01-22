@@ -29,8 +29,6 @@ export class StudentsComponent {
   ];
 
   addStudent(newStudent: any) {
-    console.log('im inside add student');
-    console.log(this.students, 'this.students');
     const index = this.students.findIndex((s) => s.id === newStudent.id);
     console.log('index', index);
 

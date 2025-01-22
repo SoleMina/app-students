@@ -45,17 +45,17 @@ export class StudentFormComponent implements OnChanges {
       return;
     }
 
-    const formData = this.studentForm.value;
+    const formDataStudent = this.studentForm.value;
 
     const updatedStudent: Student = this.student
-      ? { ...this.student, ...formData } // Update the existing student
-      : { id: Date.now(), ...formData }; // Create a new student
+      ? { ...this.student, ...formDataStudent } // Update the existing student
+      : { id: Date.now(), ...formDataStudent }; // Create a new student
 
     console.log(updatedStudent, 'updatedStudent');
 
     this.studentAdded.emit(updatedStudent);
 
     this.studentForm.reset();
-    this.student = null; // Reset the selected student
+    this.student = null;
   }
 }
