@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { StudentFormComponent } from './components/student-form/student-form.component';
 import { StudentTableComponent } from './components/student-table/student-table.component';
 import { StudentDialogFormComponent } from './components/student-dialog-form/student-dialog-form.component';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { StudentDialogFormComponent } from './components/student-dialog-form/stu
     MatSortModule,
     MatTableModule,
     MatDialogModule,
+    SharedModule,
   ],
   exports: [StudentsComponent],
 })

@@ -2,7 +2,7 @@
   <div class="row form-student">
     <form [formGroup]="studentForm" class="w-full" (ngSubmit)="onSubmit()">
       <img src="user.png" alt="User logo" width="100" />
-      <h2 class="m-4">
+      <h2 appHighlight class="m-4">
         {{ student ? "Edit Student Form" : "Register Student Form" }}
       </h2>
 
