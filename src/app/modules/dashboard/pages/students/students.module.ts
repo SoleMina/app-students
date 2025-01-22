@@ -10,9 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { StudentFormComponent } from './components/student-form/student-form.component';
 
 @NgModule({
-  declarations: [StudentsComponent],
+  declarations: [StudentsComponent, StudentFormComponent],
   imports: [
     CommonModule,
     StudentsRoutingModule,
