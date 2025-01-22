@@ -9,6 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Student } from '../../models';
+import { MatDialog } from '@angular/material/dialog';
+import { StudentDialogFormComponent } from '../student-dialog-form/student-dialog-form.component';
 
 @Component({
   selector: 'app-student-table',
@@ -34,7 +36,7 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(private matDialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -62,6 +64,38 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  deleteStudent(id: any) {}
-  editStudent(id: any) {}
+  //Dialog form
+  openDialogForm(): void {
+    this.matDialog.open(StudentDialogFormComponent);
+  }
+
+  deleteStudent(id: any) {
+    this.students = this.students.filter((student) => student.id !== id);
+    this.dataSource.data = this.students;
+  }
+  editStudent(element: Student): void {
+    console.log(element, 'element edittt');
+    const dialogRef = this.matDialog.open(StudentDialogFormComponent, {
+      width: '750px',
+      data: element,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result, 'result');
+      if (result) {
+        this.updateStudent(result);
+      }
+    });
+  }
+  updateStudent(updatedStudent: Student): void {
+    console.log(updatedStudent, 'updatedStudent');
+    const index = this.students.findIndex(
+      (student) => student.id === updatedStudent.id
+    );
+    if (index > -1) {
+      this.students[index] = updatedStudent;
+      console.log(this.dataSource.data, 'updateee');
+      this.dataSource.data = [...this.students]; // Refresh the table
+    }
+  }
 }

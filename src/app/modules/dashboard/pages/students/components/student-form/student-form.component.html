@@ -3,7 +3,10 @@
     <form [formGroup]="studentForm" class="w-full" (ngSubmit)="onSubmit()">
       <img src="user.png" alt="User logo" width="100" />
       <!-- <mat-icon matListItemIcon>person</mat-icon> -->
-      <h2 class="m-4">Register Student Form</h2>
+      <h2 class="m-4">
+        {{ student ? "Edit Student Form" : "Register Student Form" }}
+      </h2>
+
       <div class="row">
         <mat-form-field class="w-full" appearance="outline">
           <mat-label>Name</mat-label>
@@ -30,11 +33,13 @@
           <input formControlName="teacher" matInput />
         </mat-form-field>
         <div class="col-12">
-          <button mat-flat-button type="submit">Create</button>
+          <button mat-flat-button type="submit">
+            {{ student ? "Edit" : "Create" }}
+          </button>
         </div>
       </div>
     </form>
-    <pre>{{ studentForm.value | json }}</pre>
+    <!-- <pre>{{ studentForm.value | json }}</pre> -->
     <!-- <pre>{{ students | json }}</pre> -->
   </div>
 </div>

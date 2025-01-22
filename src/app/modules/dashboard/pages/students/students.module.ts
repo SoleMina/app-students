@@ -13,15 +13,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { StudentFormComponent } from './components/student-form/student-form.component';
 import { StudentTableComponent } from './components/student-table/student-table.component';
+import { StudentDialogFormComponent } from './components/student-dialog-form/student-dialog-form.component';
 
 @NgModule({
   declarations: [
     StudentsComponent,
     StudentFormComponent,
     StudentTableComponent,
+    StudentDialogFormComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +40,7 @@ import { StudentTableComponent } from './components/student-table/student-table.
     MatSort,
     MatSortModule,
     MatTableModule,
+    MatDialogModule,
   ],
   exports: [StudentsComponent],
 })

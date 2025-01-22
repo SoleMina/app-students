@@ -18,9 +18,28 @@ export class StudentsComponent {
       course: 'Angular',
       teacher: 'Juan Alvarez',
     },
+    {
+      id: 2,
+      name: 'Juana',
+      lastname: 'Sanchez',
+      email: 'sara-2025@gmail.com',
+      course: 'React',
+      teacher: 'Eduardo Pinedo',
+    },
   ];
 
-  addStudent(newStudent: Student) {
-    this.students = [...this.students, newStudent];
+  addStudent(newStudent: any) {
+    console.log('im inside add student');
+    console.log(this.students, 'this.students');
+    const index = this.students.findIndex((s) => s.id === newStudent.id);
+    console.log('index', index);
+
+    if (index !== -1) {
+      // Update existing student
+      this.students[index] = { ...newStudent };
+    } else {
+      // Add new student
+      this.students = [...this.students, newStudent];
+    }
   }
 }
