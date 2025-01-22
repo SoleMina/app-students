@@ -6,13 +6,20 @@
     <button (click)="showFiller = !showFiller" mat-raised-button>
       Toggle extra text
     </button> -->
-    <nav>
-      <ul>
-        <li>Home</li>
-        <li>Login</li>
-        <li>About Us</li>
-      </ul>
-    </nav>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon matListItemIcon>home</mat-icon>
+        <div matListItemTitle>Home</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListItemIcon>person</mat-icon>
+        <div matListItemTitle>Login</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListItemIcon>group</mat-icon>
+        <div matListItemTitle>Students</div>
+      </mat-list-item>
+    </mat-list>
   </mat-drawer>
 
   <div class="example-sidenav-content">

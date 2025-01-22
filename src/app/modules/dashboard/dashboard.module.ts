@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { StudentsModule } from './pages/students/students.module';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [DashboardComponent, ToolbarComponent, NavbarComponent],
@@ -21,6 +22,7 @@ import { StudentsModule } from './pages/students/students.module';
     MatToolbarModule,
     MatIconModule,
     StudentsModule,
+    MatListModule,
   ],
   exports: [DashboardComponent, ToolbarComponent, NavbarComponent],
 })

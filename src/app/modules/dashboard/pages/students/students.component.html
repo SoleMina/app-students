@@ -1,6 +1,5 @@
 <app-student-form (studentAdded)="addStudent($event)" />
-<pre>{{ students | json }}</pre>
 <div class="container">
-  <h2>List of Students</h2>
+  <h2 class="text-center">List of Students</h2>
   <app-student-table [students]="students" />
 </div>

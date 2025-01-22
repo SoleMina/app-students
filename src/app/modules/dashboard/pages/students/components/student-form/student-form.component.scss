@@ -3,3 +3,12 @@
   padding: 15px;
   margin: 0 auto;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    font-weight: 700;
+  }
+}

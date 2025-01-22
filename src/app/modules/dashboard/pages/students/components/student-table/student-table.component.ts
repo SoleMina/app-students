@@ -63,4 +63,5 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
   }
 
   deleteStudent(id: any) {}
+  editStudent(id: any) {}
 }
