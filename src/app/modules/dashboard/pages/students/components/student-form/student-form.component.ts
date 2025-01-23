@@ -54,23 +54,14 @@ export class StudentFormComponent implements OnChanges {
 
     this.studentData.emit(updatedStudent);
 
-    if (this.student) {
-      // Student is being updated
-      Swal.fire({
-        icon: 'success',
-        title: 'Student has been updated!',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    } else {
-      // New student is being submitted
-      Swal.fire({
-        icon: 'success',
-        title: 'Student has been Submitted!',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
+    Swal.fire({
+      icon: 'success',
+      title: this.student
+        ? 'Student has been updated!'
+        : 'Student has been Submitted!',
+      showConfirmButton: false,
+      timer: 1500,
+    });
 
     this.studentForm.reset();
     this.student = null;
