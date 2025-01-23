@@ -11,6 +11,7 @@ import { MatSort } from '@angular/material/sort';
 import { Student } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentDialogFormComponent } from '../student-dialog-form/student-dialog-form.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-table',
@@ -71,8 +72,25 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
 
   //Student
   deleteStudent(id: any) {
-    this.students = this.students.filter((student) => student.id !== id);
-    this.dataSource.data = this.students;
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'delete',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.students = this.students.filter((student) => student.id !== id);
+        this.dataSource.data = this.students;
+        Swal.fire({
+          title: 'Student has been deleted',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   }
   editStudent(element: Student): void {
     const dialogRef = this.matDialog.open(StudentDialogFormComponent, {

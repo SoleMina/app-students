@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../models';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-form',
@@ -52,8 +53,25 @@ export class StudentFormComponent implements OnChanges {
       : { id: Date.now(), ...formDataStudent }; // Create a new student
 
     console.log(updatedStudent, 'updatedStudent');
-
     this.studentAdded.emit(updatedStudent);
+
+    if (this.student) {
+      // Student is being updated
+      Swal.fire({
+        icon: 'success',
+        title: 'Student has been updated!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      // New student is being submitted
+      Swal.fire({
+        icon: 'success',
+        title: 'Student has been Submitted!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
 
     this.studentForm.reset();
     this.student = null;
