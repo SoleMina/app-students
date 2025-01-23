@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Edit Form</h2>
 <mat-dialog-content>
   <div>
-    <app-student-form [student]="data" (studentAdded)="onFormSubmit($event)" />
+    <app-student-form [student]="data" (studentData)="onFormSubmit($event)" />
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>

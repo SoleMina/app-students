@@ -37,15 +37,6 @@ export class StudentsComponent {
   ];
 
   addStudent(newStudent: any) {
-    const index = this.students.findIndex((s) => s.id === newStudent.id);
-    console.log('index', index);
-
-    if (index !== -1) {
-      // Update existing student
-      this.students[index] = { ...newStudent };
-    } else {
-      // Add new student
-      this.students = [...this.students, newStudent];
-    }
+    this.students = [...this.students, newStudent];
   }
 }

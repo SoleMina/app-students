@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 export class StudentFormComponent implements OnChanges {
   @Input() student: Student | null = null; // For editing a specific student
   @Input() students: Student[] = []; // Ensure students is always initialized
-  @Output() studentAdded = new EventEmitter<Student>(); // Emit the added/updated student
+  @Output() studentData = new EventEmitter<Student>(); // Emit the added/updated student
 
   studentForm: FormGroup;
 
@@ -52,8 +52,7 @@ export class StudentFormComponent implements OnChanges {
       ? { ...this.student, ...formDataStudent } // Update the existing student
       : { id: Date.now(), ...formDataStudent }; // Create a new student
 
-    console.log(updatedStudent, 'updatedStudent');
-    this.studentAdded.emit(updatedStudent);
+    this.studentData.emit(updatedStudent);
 
     if (this.student) {
       // Student is being updated

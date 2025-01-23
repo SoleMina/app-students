@@ -105,14 +105,23 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
       }
     });
   }
+  // updateStudent(updatedStudent: Student): void {
+  //   const index = this.students.findIndex(
+  //     (student) => student.id === updatedStudent.id
+  //   );
+  //   if (index > -1) {
+  //     this.students[index] = updatedStudent;
+  //     this.dataSource.data = [...this.students];
+  //   }
+  // }
+
+  //Using map
   updateStudent(updatedStudent: Student): void {
-    console.log(updatedStudent, 'updatedStudent');
-    const index = this.students.findIndex(
-      (student) => student.id === updatedStudent.id
+    this.students = this.students.map((student) =>
+      student.id === updatedStudent.id
+        ? { ...student, ...updatedStudent }
+        : student
     );
-    if (index > -1) {
-      this.students[index] = updatedStudent;
-      this.dataSource.data = [...this.students]; // Refresh the table
-    }
+    this.dataSource.data = [...this.students]; // Refresh the table
   }
 }
