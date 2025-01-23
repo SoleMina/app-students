@@ -10,6 +10,10 @@
         <div matListItemTitle>Login</div>
       </mat-list-item>
       <mat-list-item>
+        <mat-icon matListItemIcon>person_add</mat-icon>
+        <div matListItemTitle>Register student</div>
+      </mat-list-item>
+      <mat-list-item>
         <mat-icon matListItemIcon>group</mat-icon>
         <div matListItemTitle>Students</div>
       </mat-list-item>
@@ -19,7 +23,7 @@
   <div class="example-sidenav-content">
     <app-toolbar (drawerToggle)="drawer.toggle()" />
     <main>
-      <app-dashboard />
+      <router-outlet></router-outlet>
     </main>
   </div>
 </mat-drawer-container>
