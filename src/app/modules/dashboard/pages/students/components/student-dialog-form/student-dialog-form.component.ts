@@ -16,9 +16,9 @@ export class StudentDialogFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: Student,
     private dialogRef: MatDialogRef<StudentDialogFormComponent>
   ) {}
-  onCancel(): void {
-    this.dialogRef.close();
-  }
+  // onCancel(): void {
+  //   this.dialogRef.close();
+  // }
   onFormSubmit(updatedStudent: any): void {
     this.dialogRef.close(updatedStudent);
   }

@@ -1,7 +1,7 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <mat-list>
-      <mat-list-item>
+    <mat-nav-list>
+      <!-- <mat-list-item mat-list-item routerLink="students">
         <mat-icon matListItemIcon>home</mat-icon>
         <div matListItemTitle>Home</div>
       </mat-list-item>
@@ -16,14 +16,28 @@
       <mat-list-item>
         <mat-icon matListItemIcon>group</mat-icon>
         <div matListItemTitle>Students</div>
+      </mat-list-item> -->
+
+      @for (item of navItems; track item) {
+      <mat-list-item
+        mat-list-item
+        [routerLink]="item.link"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [activated]="rla.isActive"
+        (click)="item.name === 'login' && logout()"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <div matListItemTitle>{{ item.name }}</div>
       </mat-list-item>
-    </mat-list>
+      }
+    </mat-nav-list>
   </mat-drawer>
 
   <div class="example-sidenav-content">
     <app-toolbar (drawerToggle)="drawer.toggle()" />
     <main>
-      <router-outlet></router-outlet>
+      <router-outlet />
     </main>
   </div>
 </mat-drawer-container>

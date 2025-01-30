@@ -14,11 +14,13 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 import { StudentFormComponent } from './components/student-form/student-form.component';
 import { StudentTableComponent } from './components/student-table/student-table.component';
 import { StudentDialogFormComponent } from './components/student-dialog-form/student-dialog-form.component';
 import { SharedModule } from '../../../../shared/shared.module';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { SharedModule } from '../../../../shared/shared.module';
     StudentFormComponent,
     StudentTableComponent,
     StudentDialogFormComponent,
+    StudentDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,7 @@ import { SharedModule } from '../../../../shared/shared.module';
     MatSortModule,
     MatTableModule,
     MatDialogModule,
+    MatCardModule,
     SharedModule,
   ],
   exports: [StudentsComponent],

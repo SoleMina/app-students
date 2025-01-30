@@ -94,7 +94,7 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
   }
   editStudent(element: Student): void {
     const dialogRef = this.matDialog.open(StudentDialogFormComponent, {
-      width: '750px',
+      panelClass: 'student-dialog',
       data: element,
     });
 

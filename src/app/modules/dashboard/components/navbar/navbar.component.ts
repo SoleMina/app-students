@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavbarItems } from '../../pages/students/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +9,40 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  navItems: NavbarItems[] = [
+    {
+      name: 'Home',
+      link: 'home',
+      icon: 'home',
+    },
+    {
+      name: 'Login',
+      link: 'login',
+      icon: 'person',
+    },
+    {
+      name: 'Students',
+      link: 'students',
+      icon: 'group',
+    },
+    {
+      name: 'Register student',
+      link: 'home',
+      icon: 'person_add',
+    },
+    {
+      name: 'Logout',
+      link: 'home',
+      icon: 'logout',
+    },
+  ];
+
+  constructor(private router: Router) {}
+
+  logout(): void {
+    localStorage.removeItem('token');
+
+    this.router.navigate(['auth', 'login']);
+  }
+}

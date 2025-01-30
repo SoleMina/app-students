@@ -6,3 +6,9 @@ export interface Student {
   course: string;
   teacher: string;
 }
+
+export interface NavbarItems {
+  name: string;
+  link: string;
+  icon: string;
+}
