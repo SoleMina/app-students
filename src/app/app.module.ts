@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HttpClientModule } from '@angular/common/http';
 import { StudentsService } from './services/students.service';
+import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { StudentsService } from './services/students.service';
     DashboardModule,
     MatSidenavModule,
     HttpClientModule,
+    AuthModule,
   ],
   providers: [provideAnimationsAsync(), StudentsService],
   bootstrap: [AppComponent],

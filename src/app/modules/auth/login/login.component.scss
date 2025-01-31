@@ -1,0 +1,8 @@
+.form-login {
+  width: 40%;
+  padding: 15px;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
