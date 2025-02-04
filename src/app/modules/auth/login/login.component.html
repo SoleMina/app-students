@@ -1,24 +1,52 @@
-<div class="container">
-  <div class="row form-login">
-    <form [formGroup]="loginForm" class="w-full" (ngSubmit)="onSubmit()">
-      <div class="text-center">
-        <h2 appHighlight class="m-2">Login</h2>
-        <img src="user.png" alt="User logo" width="100" class="m-4" />
-      </div>
-
-      <div class="row">
-        <mat-form-field class="w-full" appearance="outline">
-          <mat-label>Username</mat-label>
-          <input formControlName="username" matInput />
-        </mat-form-field>
-        <mat-form-field class="w-full" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input formControlName="password" matInput type="password" />
-        </mat-form-field>
-        <div class="col-12">
-          <button mat-flat-button type="submit">Login</button>
+<div class="login">
+  <div class="container">
+    <div class="row form-login">
+      <form [formGroup]="loginForm" class="w-full" (ngSubmit)="onSubmit()">
+        <div class="text-center">
+          <h2 appHighlight class="m-2">Login</h2>
+          <img src="user.png" alt="User logo" width="100" class="m-4" />
         </div>
-      </div>
-    </form>
+
+        <div class="row">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              formControlName="username"
+              matInput
+              aria-describedby="usernameHelp"
+              [ngClass]="{
+                'is-valid': usernameControl && usernameControlIsValid,
+                'is-invalid': usernameControlIsInvalid
+              }"
+            />
+          </mat-form-field>
+          <div
+            id="usernameHelp"
+            *ngIf="usernameControl?.touched && usernameControl?.invalid"
+            class="form-text text-danger mb-3"
+          >
+            @if (usernameControl?.hasError('required')) { Este campo es
+            requerido } @else if (usernameControl?.hasError('email')) { Este no
+            es un correo válido } @else { }
+          </div>
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput type="password" />
+          </mat-form-field>
+          <div
+            id="passwordHelp"
+            *ngIf="usernameControl?.touched && usernameControl?.invalid"
+            class="form-text text-danger mb-3"
+          >
+            @if (passwordControl?.hasError('required')) { Este campo es
+            requerido } @else if (passwordControl?.hasError('password')) {
+            Password incorrecto } @else { }
+          </div>
+          <div class="col-12">
+            <button mat-flat-button type="submit">Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

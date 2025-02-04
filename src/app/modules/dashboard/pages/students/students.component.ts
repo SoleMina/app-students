@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from './models';
-import { StudentsService } from '../../../../services/students.service';
+import { StudentsService } from '../../../../core/services/students.service';
 
 @Component({
   selector: 'app-students',
@@ -15,8 +15,16 @@ export class StudentsComponent implements OnInit {
   constructor(private studentService: StudentsService) {}
 
   ngOnInit(): void {
-    this.studentService.getStudents().subscribe((data) => {
-      this.students = data;
+    // this.studentService.getStudents().subscribe((data) => {
+    //   this.students = data;
+    // });
+    this.studentService.getStudents().subscribe({
+      next: (data) => {
+        this.students = data;
+      },
+      error: (err) => {
+        console.error('Error fetching students:', err);
+      },
     });
   }
 

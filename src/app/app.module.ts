@@ -8,8 +8,8 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HttpClientModule } from '@angular/common/http';
-import { StudentsService } from './services/students.service';
 import { AuthModule } from './modules/auth/auth.module';
+import { StudentsService } from './core/services/students.service';
 
 @NgModule({
   declarations: [AppComponent],
