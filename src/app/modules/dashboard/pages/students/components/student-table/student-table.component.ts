@@ -12,6 +12,7 @@ import { Student } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentDialogFormComponent } from '../student-dialog-form/student-dialog-form.component';
 import Swal from 'sweetalert2';
+import { StudentsService } from '../../../../../../core/services/students.service';
 
 @Component({
   selector: 'app-student-table',
@@ -37,7 +38,10 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private matDialog: MatDialog) {
+  constructor(
+    private matDialog: MatDialog,
+    private studentService: StudentsService
+  ) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -81,8 +85,12 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
       confirmButtonText: 'delete',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.students = this.students.filter((student) => student.id !== id);
-        this.dataSource.data = this.students;
+        this.studentService.deleteStudentById(id).subscribe({
+          next: (updatedStudents) => {
+            this.students = updatedStudents;
+            this.dataSource.data = [...this.students];
+          },
+        });
         Swal.fire({
           title: 'Student has been deleted',
           icon: 'success',
@@ -101,27 +109,16 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result, 'result');
       if (result) {
-        this.updateStudent(result);
+        this.studentService.updateStudent(result).subscribe({
+          next: (updatedStudents) => {
+            console.log(updatedStudents, 'updatedStudents');
+            this.dataSource.data = updatedStudents;
+          },
+          error: (err) => {
+            console.error('Error updating student:', err);
+          },
+        });
       }
     });
-  }
-  // updateStudent(updatedStudent: Student): void {
-  //   const index = this.students.findIndex(
-  //     (student) => student.id === updatedStudent.id
-  //   );
-  //   if (index > -1) {
-  //     this.students[index] = updatedStudent;
-  //     this.dataSource.data = [...this.students];
-  //   }
-  // }
-
-  //Using map
-  updateStudent(updatedStudent: Student): void {
-    this.students = this.students.map((student) =>
-      student.id === updatedStudent.id
-        ? { ...student, ...updatedStudent }
-        : student
-    );
-    this.dataSource.data = [...this.students]; // Refresh the table
   }
 }

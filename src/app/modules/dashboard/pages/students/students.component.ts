@@ -15,9 +15,6 @@ export class StudentsComponent implements OnInit {
   constructor(private studentService: StudentsService) {}
 
   ngOnInit(): void {
-    // this.studentService.getStudents().subscribe((data) => {
-    //   this.students = data;
-    // });
     this.studentService.getStudents().subscribe({
       next: (data) => {
         this.students = data;
