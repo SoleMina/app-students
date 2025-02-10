@@ -38,11 +38,9 @@ export class StudentsService {
   constructor(private http: HttpClient) {}
 
   getStudents(): Observable<Student[]> {
-    //return this.http.get<Student[]>(this.studentUrl);
     return of([...this.students]);
   }
   getStudentById(id: any): Observable<Student> {
-    // this.http.get<Student>(`${this.studentUrl}/${id}`)
     return this.http
       .get<any[]>(this.studentUrl)
       .pipe(map((students) => students.find((student) => student.id === id)));
@@ -66,14 +64,4 @@ export class StudentsService {
     this.students = this.students.filter((student) => student.id !== id);
     return this.getStudents();
   }
-
-  // addStudent(student: Student) {
-  //   return this.http.post<Student>(this.studentUrl, student);
-  //   this.students.push(student);
-  //    this..push({
-  //       ...payload,
-  //       id: generateRandomString(6),
-  //     });
-  //     return this.getCourses();
-  // }
 }

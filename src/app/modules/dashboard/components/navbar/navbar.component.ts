@@ -32,6 +32,11 @@ export class NavbarComponent {
       icon: 'person_add',
     },
     {
+      name: 'Courses',
+      link: 'courses',
+      icon: 'menu_book',
+    },
+    {
       name: 'Logout',
       link: 'home',
       icon: 'logout',
