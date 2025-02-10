@@ -34,4 +34,16 @@ export class CoursesService {
     this.courses.push(course);
     return this.getCourses();
   }
+  deleteCourseById(id: string): Observable<Course[]> {
+    this.courses = this.courses.filter((course) => course.id !== id);
+    return this.getCourses();
+  }
+  updatedCourses(updatedCourse: Course): Observable<Course[]> {
+    this.courses = this.courses.map((course) =>
+      course.id === updatedCourse.id
+        ? { ...course, ...updatedCourse }
+        : { ...course }
+    );
+    return this.getCourses();
+  }
 }

@@ -28,7 +28,7 @@ export class NavbarComponent {
     },
     {
       name: 'Register student',
-      link: 'home',
+      link: 'students-register',
       icon: 'person_add',
     },
     {

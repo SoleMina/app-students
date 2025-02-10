@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsService } from '../../../../../../core/services/students.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,6 +21,8 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CoursesTableComponent {
   @Input() courses: Course[] = [];
+  @Output() delete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() edit: EventEmitter<Course> = new EventEmitter<Course>();
 
   displayedColumns: string[] = ['id', 'name', 'teacher', 'actions'];
   dataSource: MatTableDataSource<Course>;
@@ -52,7 +60,4 @@ export class CoursesTableComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  editCourse(course: Course) {}
-  deleteCourse(id: string) {}
 }
