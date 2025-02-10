@@ -1,4 +1,9 @@
 <div class="container">
-  <h2>Cursos</h2>
-  <app-courses-table />
+  <h2 class="mb-5 mt-5">Cursos</h2>
+
+  @if (isLoading) {
+  <mat-spinner />
+  } @else {
+  <app-courses-table [courses]="courses" />
+  }
 </div>

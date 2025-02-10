@@ -16,14 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class CoursesTableComponent {
   @Input() courses: Course[] = [];
 
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'email',
-    'course',
-    'teacher',
-    'actions',
-  ];
+  displayedColumns: string[] = ['id', 'name', 'teacher', 'actions'];
   dataSource: MatTableDataSource<Course>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
