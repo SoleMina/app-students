@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row form-student">
+  <div class="row form-course">
     <form [formGroup]="courseForm" class="w-full" (ngSubmit)="onSubmit()">
       <img *ngIf="!course" src="user.png" alt="User logo" width="100" />
       <h2 appHighlight class="m-4">
@@ -7,13 +7,8 @@
       </h2>
 
       <div class="row">
-        <mat-form-field class="w-full" appearance="outline">
-          <mat-label>Name</mat-label>
-          <input formControlName="name" matInput />
-        </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Course</mat-label>
-          <mat-select disableRipple formControlName="course">
+          <mat-select disableRipple formControlName="name">
             <mat-option value="Angular">Angular</mat-option>
             <mat-option value="Vue">Vue</mat-option>
             <mat-option value="React">React</mat-option>

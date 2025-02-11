@@ -13,7 +13,7 @@ export class NavbarComponent {
   navItems: NavbarItems[] = [
     {
       name: 'Home',
-      link: 'home',
+      link: 'students',
       icon: 'home',
     },
     {
@@ -34,6 +34,11 @@ export class NavbarComponent {
     {
       name: 'Courses',
       link: 'courses',
+      icon: 'menu_book',
+    },
+    {
+      name: 'Register course',
+      link: 'courses-register',
       icon: 'menu_book',
     },
     {

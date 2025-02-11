@@ -1,0 +1,17 @@
+.form-course {
+  width: 500px;
+  padding: 15px;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    font-weight: 700;
+  }
+}
