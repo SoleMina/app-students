@@ -68,16 +68,20 @@ export class CoursesComponent implements OnInit, OnChanges {
       }
     });
   }
+  onAddCourse(course: Course) {
+    console.log(course, 'add course');
+    this.courseService.addCourse(course).subscribe({
+      next: (data) => {
+        this.handleCoursesUpdate(data);
+      },
+    });
+  }
   onEditCourse(course: Course): void {
-    console.log(course, 'courseee karinaaa');
     const dialogRef = this.matDialog.open(CourseDialogComponent, {
       data: course,
     });
 
-    console.log(dialogRef, 'dialogRef karinaaa');
-
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result, 'result');
       if (result) {
         this.updateCourse(result);
       }
