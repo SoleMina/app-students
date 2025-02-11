@@ -15,7 +15,7 @@ export class CourseDialogComponent {
     private dialogRef: MatDialogRef<CourseDialogComponent>
   ) {}
 
-  onFormSubmit(updatedCourse: any): void {
+  onFormSubmit(updatedCourse: Course): void {
     this.dialogRef.close(updatedCourse);
   }
 }

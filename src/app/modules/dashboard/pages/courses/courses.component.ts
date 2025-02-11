@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { CoursesService } from '../../../../core/services/courses.service';
 import { Course } from '../../../../shared/models';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ import { CourseDialogComponent } from './components/course-dialog/course-dialog.
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponent implements OnInit, OnChanges {
   isLoading: boolean = false;
   courses: Course[] = [];
   constructor(
@@ -33,15 +33,16 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  ngOnChanges() {
+    if (this.courses && Array.isArray(this.courses)) {
+      this.courses = [...this.courses];
+      console.log(this.courses, 'this.courses');
+    }
+  }
+
   handleCoursesUpdate(data: Course[]): void {
     this.courses = [...data];
   }
-
-  // openFormDialog(data: Course): void {
-  //   this.matDialog.open(CourseDialogComponent, {
-  //     data: data,
-  //   });
-  // }
 
   onDeleteCourse(id: string) {
     Swal.fire({
@@ -67,22 +68,29 @@ export class CoursesComponent implements OnInit {
       }
     });
   }
-  onEditCourse(course: Course) {
-    console.log(course, 'coursee');
-
+  onEditCourse(course: Course): void {
+    console.log(course, 'courseee karinaaa');
     const dialogRef = this.matDialog.open(CourseDialogComponent, {
       data: course,
     });
 
+    console.log(dialogRef, 'dialogRef karinaaa');
+
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result, 'result');
       if (result) {
-        // Handle the result if the dialog was closed with a valid result
-        this.courseService.updatedCourses(result).subscribe({
-          next: (updatedCourses) => {
-            this.handleCoursesUpdate(updatedCourses);
-          },
-        });
+        this.updateCourse(result);
       }
+    });
+  }
+  updateCourse(updatedCourse: Course): void {
+    this.courseService.updateCourses(updatedCourse).subscribe({
+      next: (updatedCourses) => {
+        this.handleCoursesUpdate(updatedCourses);
+      },
+      error: (err) => {
+        console.error('Error updating course:', err);
+      },
     });
   }
 }

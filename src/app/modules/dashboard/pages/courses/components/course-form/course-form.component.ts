@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Course } from '../../../../../../shared/models';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-course-form',
@@ -26,7 +27,6 @@ export class CourseFormComponent implements OnChanges {
   constructor(private fb: FormBuilder) {
     this.courseForm = this.fb.group({
       name: [null, Validators.required],
-      course: [null, Validators.required],
       teacher: [null, Validators.required],
     });
   }
@@ -49,5 +49,16 @@ export class CourseFormComponent implements OnChanges {
       : { id: Date.now(), ...formDataCourse }; // Create a new course
 
     this.courseData.emit(updatedCourse);
+
+    Swal.fire({
+      icon: 'success',
+      title: this.course
+        ? 'Student has been updated!'
+        : 'Student has been Submitted!',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    this.courseForm.reset();
   }
 }

@@ -38,7 +38,7 @@ export class CoursesService {
     this.courses = this.courses.filter((course) => course.id !== id);
     return this.getCourses();
   }
-  updatedCourses(updatedCourse: Course): Observable<Course[]> {
+  updateCourses(updatedCourse: Course): Observable<Course[]> {
     this.courses = this.courses.map((course) =>
       course.id === updatedCourse.id
         ? { ...course, ...updatedCourse }

@@ -69,11 +69,6 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  //Dialog form
-  openDialogForm(): void {
-    this.matDialog.open(StudentDialogFormComponent);
-  }
-
   //Student
   deleteStudent(id: any) {
     Swal.fire({
