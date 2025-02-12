@@ -69,7 +69,6 @@ export class CoursesComponent implements OnInit, OnChanges {
     });
   }
   onAddCourse(course: Course) {
-    console.log(course, 'add course');
     this.courseService.addCourse(course).subscribe({
       next: (data) => {
         this.handleCoursesUpdate(data);

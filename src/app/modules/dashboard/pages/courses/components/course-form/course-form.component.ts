@@ -9,6 +9,8 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Course } from '../../../../../../shared/models';
 import Swal from 'sweetalert2';
+import { CoursesService } from '../../../../../../core/services/courses.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-form',
@@ -24,7 +26,11 @@ export class CourseFormComponent implements OnChanges {
 
   courseForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private courseService: CoursesService,
+    private router: Router
+  ) {
     this.courseForm = this.fb.group({
       name: [null, Validators.required],
       teacher: [null, Validators.required],
@@ -48,7 +54,18 @@ export class CourseFormComponent implements OnChanges {
       ? { ...this.course, ...formDataCourse } // Update the existing course
       : { id: Date.now(), ...formDataCourse }; // Create a new course
 
-    this.courseData.emit(updatedCourse);
+    if (!this.course) {
+      this.courseService.addCourse(updatedCourse).subscribe({
+        next: (data) => {
+          this.courses = [...data];
+        },
+        complete: () => {
+          this.router.navigate(['dashboard/courses']);
+        },
+      });
+    } else {
+      this.courseData.emit(updatedCourse);
+    }
 
     Swal.fire({
       icon: 'success',

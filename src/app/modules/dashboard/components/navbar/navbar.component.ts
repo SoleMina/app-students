@@ -39,7 +39,17 @@ export class NavbarComponent {
     {
       name: 'Register course',
       link: 'courses-register',
-      icon: 'menu_book',
+      icon: 'library_books',
+    },
+    {
+      name: 'Teachers',
+      link: 'teachers',
+      icon: 'person_3',
+    },
+    {
+      name: 'Register teacher',
+      link: 'teachers-register',
+      icon: 'group_add',
     },
     {
       name: 'Logout',

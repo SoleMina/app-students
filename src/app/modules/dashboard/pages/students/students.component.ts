@@ -24,8 +24,4 @@ export class StudentsComponent implements OnInit {
       },
     });
   }
-
-  addStudent(newStudent: any) {
-    this.students = [...this.students, newStudent];
-  }
 }

@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { StudentsModule } from './pages/students/students.module';
 import { SharedModule } from '../../shared/shared.module';
 import { CoursesModule } from './pages/courses/courses.module';
+import { TeachersModule } from './pages/teachers/teachers.module';
 
 @NgModule({
   declarations: [DashboardComponent, ToolbarComponent, NavbarComponent],
@@ -16,6 +17,7 @@ import { CoursesModule } from './pages/courses/courses.module';
     DashboardRoutingModule,
     StudentsModule,
     CoursesModule,
+    TeachersModule,
     SharedModule,
   ],
   exports: [DashboardComponent, ToolbarComponent, NavbarComponent],

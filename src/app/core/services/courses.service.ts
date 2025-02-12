@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Course } from '../../shared/models';
 import { delay, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
