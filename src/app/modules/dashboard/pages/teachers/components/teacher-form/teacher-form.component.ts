@@ -1,7 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Teacher } from '../../../../../../shared/models';
-import { last } from 'rxjs';
+import { TeachersService } from '../../../../../../core/services/teachers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-teacher-form',
@@ -10,14 +18,18 @@ import { last } from 'rxjs';
   templateUrl: './teacher-form.component.html',
   styleUrl: './teacher-form.component.scss',
 })
-export class TeacherFormComponent {
+export class TeacherFormComponent implements OnChanges {
   @Input() teacher: Teacher | null = null;
   @Input() teachers: Teacher[] = [];
   @Output() teacherData = new EventEmitter<Teacher>();
 
   teacherForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private teacherService: TeachersService,
+    private route: Router
+  ) {
     this.teacherForm = this.fb.group({
       name: [null, Validators.required],
       lastname: [null, Validators.required],
@@ -26,7 +38,14 @@ export class TeacherFormComponent {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['teacher'] && this.teacher) {
+      this.teacherForm.patchValue(this.teacher);
+    }
+  }
+
   onSubmit() {
+    console.log('inside submit');
     if (this.teacherForm.invalid) {
       this.teacherForm.markAllAsTouched();
       return;
@@ -38,6 +57,18 @@ export class TeacherFormComponent {
       ? { ...this.teacher, ...formDataTeacher }
       : { id: Date.now(), ...formDataTeacher };
 
-    this.teacherData.emit(teacherObj);
+    if (!this.teacher) {
+      console.log('inside add teacher');
+      this.teacherService.addTeacher(teacherObj).subscribe({
+        next: (data) => {
+          this.teachers = [...data];
+        },
+        complete: () => {
+          this.route.navigate(['dashboard/teachers']);
+        },
+      });
+    } else {
+      this.teacherData.emit(teacherObj);
+    }
   }
 }

@@ -35,4 +35,9 @@ export class TeachersService {
   getTeachers(): Observable<Teacher[]> {
     return of([...this.teachers]).pipe(delay(1000));
   }
+
+  addTeacher(teacher: Teacher): Observable<Teacher[]> {
+    this.teachers.push(teacher);
+    return this.getTeachers();
+  }
 }
