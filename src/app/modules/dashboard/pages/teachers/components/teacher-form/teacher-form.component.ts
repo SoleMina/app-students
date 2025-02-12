@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Teacher } from '../../../../../../shared/models';
 import { last } from 'rxjs';
@@ -11,7 +11,10 @@ import { last } from 'rxjs';
   styleUrl: './teacher-form.component.scss',
 })
 export class TeacherFormComponent {
-  teacher: Teacher | null = null;
+  @Input() teacher: Teacher | null = null;
+  @Input() teachers: Teacher[] = [];
+  @Output() teacherData = new EventEmitter<Teacher>();
+
   teacherForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -28,5 +31,13 @@ export class TeacherFormComponent {
       this.teacherForm.markAllAsTouched();
       return;
     }
+
+    const formDataTeacher = this.teacherForm.value;
+
+    const teacherObj: Teacher = this.teacher
+      ? { ...this.teacher, ...formDataTeacher }
+      : { id: Date.now(), ...formDataTeacher };
+
+    this.teacherData.emit(teacherObj);
   }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TeachersComponent } from './teachers.component';
 import { TeacherFormComponent } from './components/teacher-form/teacher-form.component';
+import { TeacherDetailsComponent } from './components/teacher-details/teacher-details.component';
 
 const routes: Routes = [
   {
@@ -10,8 +11,8 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: ':id',
-    component: TeacherFormComponent,
+    path: 'teachers/:id',
+    component: TeacherDetailsComponent,
   },
   {
     path: 'teachers-register',
