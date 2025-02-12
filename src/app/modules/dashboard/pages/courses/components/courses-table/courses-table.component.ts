@@ -5,8 +5,6 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { StudentsService } from '../../../../../../core/services/students.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Course } from '../../../../../../shared/models';
@@ -30,10 +28,7 @@ export class CoursesTableComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(
-    private matDialog: MatDialog,
-    private studentService: StudentsService
-  ) {
+  constructor() {
     this.dataSource = new MatTableDataSource();
   }
 

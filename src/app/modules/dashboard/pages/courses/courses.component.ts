@@ -12,7 +12,7 @@ import { CourseDialogComponent } from './components/course-dialog/course-dialog.
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
 })
-export class CoursesComponent implements OnInit, OnChanges {
+export class CoursesComponent implements OnInit {
   isLoading: boolean = false;
   courses: Course[] = [];
   constructor(
@@ -33,12 +33,12 @@ export class CoursesComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges() {
-    if (this.courses && Array.isArray(this.courses)) {
-      this.courses = [...this.courses];
-      console.log(this.courses, 'this.courses');
-    }
-  }
+  // ngOnChanges() {
+  //   if (this.courses && Array.isArray(this.courses)) {
+  //     this.courses = [...this.courses];
+  //     console.log(this.courses, 'this.courses');
+  //   }
+  // }
 
   handleCoursesUpdate(data: Course[]): void {
     this.courses = [...data];

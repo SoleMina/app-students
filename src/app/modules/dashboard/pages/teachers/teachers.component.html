@@ -1,1 +1,9 @@
-<app-teachers-table />
+<div class="container">
+  <h2 class="text-center pt-5 pb-4">List of Teachers</h2>
+
+  @if (isLoading) {
+  <mat-spinner />
+  } @else {
+  <app-teachers-table [teachers]="teachers" />
+  }
+</div>

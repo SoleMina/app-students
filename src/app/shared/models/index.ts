@@ -3,3 +3,11 @@ export interface Course {
   name: string;
   teacher: string;
 }
+
+export interface Teacher {
+  id: string;
+  name: string;
+  lastname: string;
+  email: string;
+  course: string;
+}
