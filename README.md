@@ -9,5 +9,9 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 - Reactive Forms
 - Modules
 - Directives
+- Dashboard modules
+- Students modules
+- Courses modules
+- Teachers modules
 
 ### Notes

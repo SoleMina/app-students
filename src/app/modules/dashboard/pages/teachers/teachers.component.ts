@@ -22,6 +22,7 @@ export class TeachersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.teacherService.getTeachers().subscribe({
       next: (data) => {
         console.log(data, 'teachers data');
