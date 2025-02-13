@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Student } from '../../pages/students/models';
+import { StudentsService } from '../../../../core/services/students.service';
 
 @Component({
   selector: 'app-toolbar',

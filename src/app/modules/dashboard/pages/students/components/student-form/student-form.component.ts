@@ -9,6 +9,8 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../models';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { StudentsService } from '../../../../../../core/services/students.service';
 
 @Component({
   selector: 'app-student-form',
@@ -23,7 +25,11 @@ export class StudentFormComponent implements OnChanges {
 
   studentForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private studentService: StudentsService
+  ) {
     this.studentForm = this.fb.group({
       name: [null, Validators.required],
       lastname: [null, Validators.required],
@@ -41,6 +47,7 @@ export class StudentFormComponent implements OnChanges {
   }
 
   onSubmit() {
+    console.log(this.studentForm.value, 'this.studentForm.value');
     if (this.studentForm.invalid) {
       this.studentForm.markAllAsTouched();
       return;
@@ -64,6 +71,15 @@ export class StudentFormComponent implements OnChanges {
     });
 
     this.studentForm.reset();
+
+    if (!this.student) {
+      ('inside add student');
+      this.studentService.addStudent(updatedStudent).subscribe({
+        next: (data) => console.log(data),
+      });
+      this.router.navigate(['/dashboard/students']);
+    }
+
     this.student = null;
   }
 }

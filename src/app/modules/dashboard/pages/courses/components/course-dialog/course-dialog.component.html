@@ -1,0 +1,8 @@
+<mat-dialog-content>
+  <div>
+    <app-course-form [course]="data" (courseData)="onFormSubmit($event)" />
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

@@ -7,10 +7,19 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StudentsModule } from './pages/students/students.module';
 import { SharedModule } from '../../shared/shared.module';
+import { CoursesModule } from './pages/courses/courses.module';
+import { TeachersModule } from './pages/teachers/teachers.module';
 
 @NgModule({
   declarations: [DashboardComponent, ToolbarComponent, NavbarComponent],
-  imports: [CommonModule, DashboardRoutingModule, StudentsModule, SharedModule],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    StudentsModule,
+    CoursesModule,
+    TeachersModule,
+    SharedModule,
+  ],
   exports: [DashboardComponent, ToolbarComponent, NavbarComponent],
 })
 export class DashboardModule {}

@@ -14,7 +14,6 @@ const routes: Routes = [
       ),
   },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'register-student', component: StudentFormComponent },
   { path: '**', redirectTo: 'auth/login' },
 ];
 

@@ -1,23 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
     <mat-nav-list>
-      <!-- <mat-list-item mat-list-item routerLink="students">
-        <mat-icon matListItemIcon>home</mat-icon>
-        <div matListItemTitle>Home</div>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon matListItemIcon>person</mat-icon>
-        <div matListItemTitle>Login</div>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon matListItemIcon>person_add</mat-icon>
-        <div matListItemTitle>Register student</div>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon matListItemIcon>group</mat-icon>
-        <div matListItemTitle>Students</div>
-      </mat-list-item> -->
-
       @for (item of navItems; track item) {
       <mat-list-item
         mat-list-item
