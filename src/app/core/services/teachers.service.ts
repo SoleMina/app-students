@@ -40,4 +40,16 @@ export class TeachersService {
     this.teachers.push(teacher);
     return this.getTeachers();
   }
+  deleteTeacherById(id: string): Observable<Teacher[]> {
+    this.teachers = this.teachers.filter((teacher) => teacher.id !== id);
+    return this.getTeachers();
+  }
+  updateTeacher(updatedCourse: Teacher): Observable<Teacher[]> {
+    this.teachers = this.teachers.map((teacher) =>
+      teacher.id === updatedCourse.id
+        ? { ...teacher, ...updatedCourse }
+        : { ...teacher }
+    );
+    return this.getTeachers();
+  }
 }

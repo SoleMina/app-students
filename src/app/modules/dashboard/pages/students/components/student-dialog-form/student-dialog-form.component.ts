@@ -1,4 +1,4 @@
-import { Component, Inject, inject, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Student } from '../../models';
 
@@ -19,7 +19,7 @@ export class StudentDialogFormComponent {
   // onCancel(): void {
   //   this.dialogRef.close();
   // }
-  onFormSubmit(updatedStudent: any): void {
+  onFormSubmit(updatedStudent: Student): void {
     this.dialogRef.close(updatedStudent);
   }
 }
