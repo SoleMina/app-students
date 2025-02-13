@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Teacher } from '../../../../../../shared/models';
 import { TeachersService } from '../../../../../../core/services/teachers.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-teacher-form',
@@ -70,5 +71,16 @@ export class TeacherFormComponent implements OnChanges {
     } else {
       this.teacherData.emit(teacherObj);
     }
+
+    Swal.fire({
+      icon: 'success',
+      title: this.teacher
+        ? 'Teacher has been updated!'
+        : 'Teacher has been Submitted!',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    this.teacherForm.reset();
   }
 }

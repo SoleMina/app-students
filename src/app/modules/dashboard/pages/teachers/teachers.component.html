@@ -4,6 +4,10 @@
   @if (isLoading) {
   <mat-spinner />
   } @else {
-  <app-teachers-table [teachers]="teachers" />
+  <app-teachers-table
+    [teachers]="teachers"
+    (delete)="onDelete($event)"
+    (edit)="onEditTeacher($event)"
+  />
   }
 </div>

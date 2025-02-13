@@ -7,7 +7,7 @@ import { Student } from '../../modules/dashboard/pages/students/models';
   providedIn: 'root',
 })
 export class StudentsService {
-  private studentUrl = 'assets/students.json';
+  // private studentUrl = 'assets/students.json';
   students: Student[] = [
     {
       id: 1,
@@ -40,17 +40,16 @@ export class StudentsService {
   getStudents(): Observable<Student[]> {
     return of([...this.students]);
   }
-  getStudentById(id: any): Observable<Student> {
-    return this.http
-      .get<any[]>(this.studentUrl)
-      .pipe(map((students) => students.find((student) => student.id === id)));
-  }
+  // getStudentById(id: any): Observable<Student> {
+  //   return this.http
+  //     .get<any[]>(this.studentUrl)
+  //     .pipe(map((students) => students.find((student) => student.id === id)));
+  // }
   addStudent(student: Student): Observable<Student[]> {
     this.students.push(student);
     return this.getStudents();
   }
   updateStudent(updatedStudent: Student): Observable<Student[]> {
-    // Create a new array with the updated student data
     this.students = this.students.map((student) =>
       student.id === updatedStudent.id
         ? { ...student, ...updatedStudent }
