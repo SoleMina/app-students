@@ -14,4 +14,6 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 - Courses modules
 - Teachers modules
 
-### Notes
+### Url reference
+
+- http://localhost:4200/dashboard/students
