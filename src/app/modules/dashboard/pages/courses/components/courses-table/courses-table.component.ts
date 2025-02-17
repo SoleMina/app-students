@@ -9,6 +9,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Course } from '../../../../../../shared/models';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from '../../../../../../core/services/auth.service';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses-table',
@@ -22,14 +24,17 @@ export class CoursesTableComponent {
   @Output() delete: EventEmitter<string> = new EventEmitter<string>();
   @Output() edit: EventEmitter<Course> = new EventEmitter<Course>();
 
+  isAdmin$: Observable<boolean>;
+
   displayedColumns: string[] = ['id', 'name', 'teacher', 'actions'];
   dataSource: MatTableDataSource<Course>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.dataSource = new MatTableDataSource();
+    this.isAdmin$ = this.authService.isAdmin$;
   }
 
   ngOnChanges() {

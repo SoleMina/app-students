@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarItems } from '../../pages/students/models';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +20,11 @@ export class NavbarComponent {
       name: 'Login',
       link: 'login',
       icon: 'person',
+    },
+    {
+      name: 'Users',
+      link: 'users',
+      icon: 'manage_accounts',
     },
     {
       name: 'Students',
@@ -58,11 +63,12 @@ export class NavbarComponent {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   logout(): void {
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
+    // this.router.navigate(['auth', 'login']);
 
-    this.router.navigate(['auth', 'login']);
+    this.authService.logout();
   }
 }
