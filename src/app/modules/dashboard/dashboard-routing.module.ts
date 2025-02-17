@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StudentsComponent } from './pages/students/students.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
+import { adminGuard } from '../../core/guards/admin.guard';
 
 //Route defined dashboard/
 
@@ -24,6 +25,12 @@ const routes: Routes = [
     component: TeachersComponent,
     loadChildren: () =>
       import('./pages/teachers/teachers.module').then((m) => m.TeachersModule),
+  },
+  {
+    path: 'users',
+    canActivate: [adminGuard],
+    loadChildren: () =>
+      import('./pages/users/users.module').then((m) => m.UsersModule),
   },
 ];
 

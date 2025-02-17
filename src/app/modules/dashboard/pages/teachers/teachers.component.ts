@@ -59,15 +59,18 @@ export class TeachersComponent implements OnInit {
     });
   }
   onEditTeacher(updatedTeacher: Teacher) {
-    const dialogRef = this.matDialog.open(TeacherDialogComponent, {
-      data: updatedTeacher,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.updateTeacher(result);
-      }
-    });
+    this.matDialog
+      .open(TeacherDialogComponent, {
+        data: updatedTeacher,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (data) => {
+          if (!!data) {
+            this.updateTeacher(data);
+          }
+        },
+      });
   }
   updateTeacher(updatedTeacher: Teacher) {
     this.teacherService.updateTeacher(updatedTeacher).subscribe({

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +13,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
-      username: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(4)]],
     });
   }
 
   get usernameControl() {
-    return this.loginForm.get('username');
+    return this.loginForm.get('email');
   }
   get passwordControl() {
-    return this.loginForm.get('username');
+    return this.loginForm.get('password');
   }
   get usernameControlIsValid() {
     return this.usernameControl?.valid && this.usernameControl.touched;
@@ -39,11 +45,13 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    const formDataLogin = this.loginForm.value;
+    console.log(formDataLogin, 'formDataLogin');
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
+    } else {
+      this.authService.login(this.loginForm.value);
     }
-    const formDataLogin = this.loginForm.value;
-    console.log(formDataLogin, 'formDataLogin');
   }
 }

@@ -36,10 +36,18 @@
         <button mat-icon-button [routerLink]="['/dashboard/courses', row.id]">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button (click)="edit.emit(row)">
+        <button
+          *ngIf="isAdmin$ | async"
+          mat-icon-button
+          (click)="edit.emit(row)"
+        >
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="delete.emit(row.id)">
+        <button
+          *ngIf="isAdmin$ | async"
+          mat-icon-button
+          (click)="delete.emit(row.id)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </td>

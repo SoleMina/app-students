@@ -9,9 +9,9 @@
 
         <div class="row">
           <mat-form-field class="w-full" appearance="outline">
-            <mat-label>Username</mat-label>
+            <mat-label>Email</mat-label>
             <input
-              formControlName="username"
+              formControlName="email"
               matInput
               aria-describedby="usernameHelp"
               [ngClass]="{
@@ -43,7 +43,13 @@
             Password incorrecto } @else { }
           </div>
           <div class="col-12">
-            <button mat-flat-button type="submit">Login</button>
+            <button
+              routerLink="/dashboard/students"
+              mat-flat-button
+              type="submit"
+            >
+              Login
+            </button>
           </div>
         </div>
       </form>
