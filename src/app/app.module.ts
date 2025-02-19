@@ -7,7 +7,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
 import { AuthModule } from './modules/auth/auth.module';
 import { StudentsService } from './core/services/students.service';
 
@@ -21,7 +25,11 @@ import { StudentsService } from './core/services/students.service';
     HttpClientModule,
     AuthModule,
   ],
-  providers: [provideAnimationsAsync(), StudentsService],
+  providers: [
+    provideAnimationsAsync(),
+    StudentsService,
+    provideHttpClient(withFetch()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
