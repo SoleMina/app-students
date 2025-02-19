@@ -33,7 +33,6 @@ export class CourseFormComponent implements OnChanges {
   ) {
     this.courseForm = this.fb.group({
       name: [null, Validators.required],
-      teacher: [null, Validators.required],
     });
   }
 

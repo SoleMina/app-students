@@ -1,37 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Course } from '../../shared/models';
 import { concatMap, delay, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoursesService {
-  courses: Course[] = [
-    {
-      id: '01',
-      name: 'Angular',
-      teacher: 'John Doe',
-    },
-    {
-      id: '02',
-      name: 'React',
-      teacher: 'Sthepen Cano',
-    },
-    {
-      id: '03',
-      name: 'Vue',
-      teacher: 'Eduardo Pinedo',
-    },
-  ];
+  // courses: Course[] = [
+  //   {
+  //     id: '01',
+  //     name: 'Angular',
+  //     teacher: 'John Doe',
+  //   },
+  //   {
+  //     id: '02',
+  //     name: 'React',
+  //     teacher: 'Sthepen Cano',
+  //   },
+  //   {
+  //     id: '03',
+  //     name: 'Vue',
+  //     teacher: 'Eduardo Pinedo',
+  //   },
+  // ];
   constructor(private httpClient: HttpClient) {}
 
   // getCourses(): Observable<Course[]> {
   //   return of([...this.courses]).pipe(delay(1000));
   // }
   getCourses(): Observable<Course[]> {
-    return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`);
+    const myHeaders = new HttpHeaders().append(
+      'Authorization',
+      localStorage.getItem('access_token') || ''
+    );
+    return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`, {
+      headers: myHeaders,
+    });
   }
 
   // addCourse(course: Course): Observable<Course[]> {
@@ -63,10 +69,16 @@ export class CoursesService {
   // }
   updateCourses(updatedCourse: Course): Observable<Course[]> {
     return this.httpClient
-      .patch<Course[]>(
+      .patch<Course>(
         `${environment.baseApiUrl}/courses/${updatedCourse.id}`,
         updatedCourse
       )
       .pipe(concatMap(() => this.getCourses()));
+  }
+
+  getCourseById(id: string): Observable<Course> {
+    return this.httpClient.get<Course>(
+      `${environment.baseApiUrl}/courses/${id}?_embed=teachers`
+    );
   }
 }

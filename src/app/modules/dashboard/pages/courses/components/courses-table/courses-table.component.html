@@ -18,15 +18,10 @@
       <td mat-cell *matCellDef="let row">{{ row.id }}</td>
     </ng-container>
 
-    <!-- Teacher Column -->
+    <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
       <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="teacher">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Teacher</th>
-      <td mat-cell *matCellDef="let row">{{ row.teacher }}</td>
     </ng-container>
 
     <!-- Actions Column -->

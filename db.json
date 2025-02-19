@@ -40,5 +40,31 @@
       ],
       "teacher": "dffddfdf"
     }
+  ],
+  "teachers": [
+    {
+      "id": "B01",
+      "name": "John",
+      "lastname": "Doesddsd",
+      "email": "john@gmail.com",
+      "courseId": "001",
+      "course": "Vue"
+    },
+    {
+      "id": "B02",
+      "name": "Sthepen",
+      "lastname": "Cano",
+      "email": "sthepen@gmail.com",
+      "courseId": "002",
+      "course": "React"
+    },
+    {
+      "id": "B03",
+      "name": "Eduardo",
+      "lastname": "Pinedo",
+      "email": "eduardo@gmail.com",
+      "courseId": "003",
+      "course": "Angular"
+    }
   ]
 }
