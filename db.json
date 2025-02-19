@@ -66,5 +66,31 @@
       "courseId": "003",
       "course": "Angular"
     }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "Karina",
+      "lastname": "Prado",
+      "email": "karina.pradogutierrez@gmail.com",
+      "course": "Angular",
+      "teacher": "Sthepen Cano"
+    },
+    {
+      "id": 2,
+      "name": "Sara",
+      "lastname": "Carrillo",
+      "email": "sara@gmail.com",
+      "course": "React",
+      "teacher": "Sthepen Cano"
+    },
+    {
+      "id": 3,
+      "name": "Leo",
+      "lastname": "Estrada",
+      "email": "leoestrada@gmail.com",
+      "course": "React",
+      "teacher": "Eduardo Pinedo"
+    }
   ]
 }
