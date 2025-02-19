@@ -1,1 +1,14 @@
-<p>course-details works!</p>
+@if(isLoading) {
+<mat-spinner></mat-spinner>
+} @else { @if (errorMessage) {
+<p>{{ errorMessage }}</p>
+} @else {
+<div class="container">
+  <h3>Name:</h3>
+  <p>{{ course?.name }}</p>
+  <h3>Teachers:</h3>
+  @for(teacher of course?.teachers; track $index ) {
+  <mat-list>{{ teacher?.name }}</mat-list>
+  }
+</div>
+} }

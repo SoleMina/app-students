@@ -1,0 +1,70 @@
+{
+  "courses": [
+    {
+      "id": "001",
+      "name": "React",
+      "description": "React is a JavaScript library for building user interfaces.",
+      "price": 10000,
+      "students": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "email": "johndoe@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "name": "Angular",
+      "description": "Angular is a platform and framework for building single-page client applications using HTML and TypeScript.",
+      "price": 20000,
+      "students": [
+        {
+          "id": 1,
+          "name": "Jane Doe",
+          "email": "janedoe@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": "003",
+      "name": "Angular",
+      "description": "Vue is a progressive framework for building user interfaces.",
+      "price": 15000,
+      "students": [
+        {
+          "id": 1,
+          "name": "Jane Doe",
+          "email": "janedoe@gmail.com"
+        }
+      ],
+      "teacher": "dffddfdf"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "B01",
+      "name": "John",
+      "lastname": "Doesddsd",
+      "email": "john@gmail.com",
+      "courseId": "001",
+      "course": "Vue"
+    },
+    {
+      "id": "B02",
+      "name": "Sthepen",
+      "lastname": "Cano",
+      "email": "sthepen@gmail.com",
+      "courseId": "002",
+      "course": "React"
+    },
+    {
+      "id": "B03",
+      "name": "Eduardo",
+      "lastname": "Pinedo",
+      "email": "eduardo@gmail.com",
+      "courseId": "003",
+      "course": "Angular"
+    }
+  ]
+}

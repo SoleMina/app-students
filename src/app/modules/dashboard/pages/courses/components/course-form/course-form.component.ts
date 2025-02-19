@@ -33,7 +33,6 @@ export class CourseFormComponent implements OnChanges {
   ) {
     this.courseForm = this.fb.group({
       name: [null, Validators.required],
-      teacher: [null, Validators.required],
     });
   }
 
@@ -52,7 +51,7 @@ export class CourseFormComponent implements OnChanges {
 
     const updatedCourse: Course = this.course
       ? { ...this.course, ...formDataCourse } // Update the existing course
-      : { id: Date.now(), ...formDataCourse }; // Create a new course
+      : { id: Date.now() + '', ...formDataCourse }; // Create a new course
 
     if (!this.course) {
       this.courseService.addCourse(updatedCourse).subscribe({

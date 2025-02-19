@@ -26,7 +26,7 @@ export class CoursesTableComponent {
 
   isAdmin$: Observable<boolean>;
 
-  displayedColumns: string[] = ['id', 'name', 'teacher', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource: MatTableDataSource<Course>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
