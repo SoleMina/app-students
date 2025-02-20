@@ -5,9 +5,8 @@ export interface Student {
   name: string;
   lastname: string;
   email: string;
-  course: string;
   teacher: string;
-  courses?: Course[];
+  courses: Course[];
 }
 
 export interface NavbarItems {

@@ -11,6 +11,7 @@ import { Course } from '../../../../../../shared/models';
 import Swal from 'sweetalert2';
 import { CoursesService } from '../../../../../../core/services/courses.service';
 import { Router } from '@angular/router';
+import { generateRandomString } from '../../../../../../shared/utils';
 
 @Component({
   selector: 'app-course-form',
@@ -51,7 +52,7 @@ export class CourseFormComponent implements OnChanges {
 
     const updatedCourse: Course = this.course
       ? { ...this.course, ...formDataCourse } // Update the existing course
-      : { id: Date.now() + '', ...formDataCourse }; // Create a new course
+      : { id: generateRandomString(6) + '', ...formDataCourse }; // Create a new course
 
     if (!this.course) {
       this.courseService.addCourse(updatedCourse).subscribe({

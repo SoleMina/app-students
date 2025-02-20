@@ -6,9 +6,7 @@
 <div class="container">
   <h3>Name:</h3>
   <p>{{ student?.name }}</p>
-  <h3>Teachers:</h3>
-  @for(item of student?.courses; track $index ) {
-  <mat-list>{{ item?.name }}</mat-list>
-  }
+  <h3>Teacher:</h3>
+  <p>{{ student?.teacher }}</p>
 </div>
 } }
