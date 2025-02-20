@@ -3,15 +3,17 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Teacher } from '../../../../../../shared/models';
+import { Course, Teacher } from '../../../../../../shared/models';
 import { TeachersService } from '../../../../../../core/services/teachers.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { generateRandomString } from '../../../../../../shared/utils';
+import { CoursesService } from '../../../../../../core/services/courses.service';
 
 @Component({
   selector: 'app-teacher-form',
@@ -20,16 +22,18 @@ import { generateRandomString } from '../../../../../../shared/utils';
   templateUrl: './teacher-form.component.html',
   styleUrl: './teacher-form.component.scss',
 })
-export class TeacherFormComponent implements OnChanges {
+export class TeacherFormComponent implements OnInit, OnChanges {
   @Input() teacher: Teacher | null = null;
   @Input() teachers: Teacher[] = [];
   @Output() teacherData = new EventEmitter<Teacher>();
+  coursesList: Course[] = [];
 
   teacherForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private teacherService: TeachersService,
+    private coursesService: CoursesService,
     private route: Router
   ) {
     this.teacherForm = this.fb.group({
@@ -37,6 +41,13 @@ export class TeacherFormComponent implements OnChanges {
       lastname: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       course: [null, Validators.required],
+    });
+  }
+  ngOnInit(): void {
+    this.coursesService.getCourses().subscribe({
+      next: (data) => {
+        this.coursesList = [...data];
+      },
     });
   }
 

@@ -21,15 +21,25 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Course</mat-label>
-          <mat-select disableRipple formControlName="course">
-            <mat-option value="Angular">Angular</mat-option>
-            <mat-option value="Vue">Vue</mat-option>
-            <mat-option value="React">React</mat-option>
+          <mat-select formControlName="course">
+            <mat-option
+              *ngFor="let course of coursesList"
+              [value]="course.name"
+            >
+              {{ course.name }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="w-full" appearance="outline">
           <mat-label>Teacher</mat-label>
-          <input formControlName="teacher" matInput />
+          <mat-select formControlName="teacher">
+            <mat-option
+              *ngFor="let teacher of teachersList"
+              [value]="teacher.name + ' ' + teacher.lastname"
+            >
+              {{ teacher.name }} {{ teacher.lastname }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <div class="col-12">
           <button mat-flat-button type="submit">

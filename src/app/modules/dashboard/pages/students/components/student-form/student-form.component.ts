@@ -3,6 +3,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -12,6 +13,9 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { StudentsService } from '../../../../../../core/services/students.service';
 import { generateRandomString } from '../../../../../../shared/utils';
+import { Course, Teacher } from '../../../../../../shared/models';
+import { TeachersService } from '../../../../../../core/services/teachers.service';
+import { CoursesService } from '../../../../../../core/services/courses.service';
 
 @Component({
   selector: 'app-student-form',
@@ -19,17 +23,22 @@ import { generateRandomString } from '../../../../../../shared/utils';
   templateUrl: './student-form.component.html',
   styleUrls: ['./student-form.component.scss'],
 })
-export class StudentFormComponent implements OnChanges {
+export class StudentFormComponent implements OnInit, OnChanges {
   @Input() student: Student | null = null; // For editing a specific student
   @Input() students: Student[] = []; // Ensure students is always initialized
   @Output() studentData = new EventEmitter<Student>(); // Emit the added/updated student
+
+  teachersList: Teacher[] = [];
+  coursesList: Course[] = [];
 
   studentForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private studentService: StudentsService
+    private studentService: StudentsService,
+    private teacherService: TeachersService,
+    private coursesService: CoursesService
   ) {
     this.studentForm = this.fb.group({
       name: [null, Validators.required],
@@ -39,10 +48,25 @@ export class StudentFormComponent implements OnChanges {
       teacher: [null, Validators.required],
     });
   }
+  ngOnInit(): void {
+    this.teacherService.getTeachers().subscribe({
+      next: (data) => {
+        this.teachersList = [...data];
+      },
+    });
+    this.coursesService.getCourses().subscribe({
+      next: (data) => {
+        this.coursesList = [...data];
+      },
+    });
+
+    this.studentForm.get('course')?.valueChanges.subscribe((selectedCourse) => {
+      this.filterTeachersByCourse(selectedCourse);
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['student'] && this.student) {
-      // Populate the form with the selected student's data
       this.studentForm.patchValue(this.student);
     }
   }
@@ -82,5 +106,23 @@ export class StudentFormComponent implements OnChanges {
     }
 
     this.student = null;
+  }
+
+  filterTeachersByCourse(courseName: string) {
+    if (!courseName) {
+      this.teachersList = [];
+      return;
+    }
+
+    this.teacherService.getTeachers().subscribe({
+      next: (data) => {
+        this.teachersList = data.filter((teacher) =>
+          teacher.course.includes(courseName)
+        );
+      },
+    });
+
+    // Reset teacher input value
+    this.studentForm.get('teacher')?.setValue(null);
   }
 }

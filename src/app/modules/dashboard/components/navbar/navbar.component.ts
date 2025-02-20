@@ -27,19 +27,14 @@ export class NavbarComponent {
       icon: 'manage_accounts',
     },
     {
-      name: 'Students',
-      link: 'students',
-      icon: 'group',
-    },
-    {
       name: 'Register student',
       link: 'students-register',
       icon: 'person_add',
     },
     {
-      name: 'Courses',
-      link: 'courses',
-      icon: 'menu_book',
+      name: 'Students',
+      link: 'students',
+      icon: 'group',
     },
     {
       name: 'Register course',
@@ -47,14 +42,19 @@ export class NavbarComponent {
       icon: 'library_books',
     },
     {
-      name: 'Teachers',
-      link: 'teachers',
-      icon: 'person_3',
+      name: 'Courses',
+      link: 'courses',
+      icon: 'menu_book',
     },
     {
       name: 'Register teacher',
       link: 'teachers-register',
       icon: 'group_add',
+    },
+    {
+      name: 'Teachers',
+      link: 'teachers',
+      icon: 'person_3',
     },
     {
       name: 'Logout',

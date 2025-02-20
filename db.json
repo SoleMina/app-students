@@ -14,9 +14,13 @@
     },
     {
       "id": "003",
-      "name": "Angular",
+      "name": "Vue",
       "description": "Vue is a progressive framework for building user interfaces.",
       "price": 15000
+    },
+    {
+      "id": "2v5kJi",
+      "name": "Javascript"
     }
   ],
   "teachers": [
@@ -25,28 +29,28 @@
       "name": "John",
       "lastname": "Doesddsd",
       "email": "john@gmail.com",
-      "courseId": "001"
+      "course": "Vue"
     },
     {
       "id": "B02",
       "name": "Sthepen",
       "lastname": "Cano",
       "email": "sthepen@gmail.com",
-      "courseId": "002"
+      "course": "Angular"
     },
     {
       "id": "B03",
       "name": "Eduardo",
       "lastname": "Pinedo",
       "email": "eduardo@gmail.com",
-      "courseId": "003"
+      "course": "React"
     },
     {
       "id": "cP4eSb",
       "name": "Carlos",
       "lastname": "Zevallos",
       "email": "carlos@gmail.com",
-      "courseId": "001"
+      "course": "Angular"
     }
   ],
   "students": [
