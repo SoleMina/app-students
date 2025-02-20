@@ -11,6 +11,7 @@ import { Teacher } from '../../../../../../shared/models';
 import { TeachersService } from '../../../../../../core/services/teachers.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { generateRandomString } from '../../../../../../shared/utils';
 
 @Component({
   selector: 'app-teacher-form',
@@ -56,7 +57,7 @@ export class TeacherFormComponent implements OnChanges {
 
     const teacherObj: Teacher = this.teacher
       ? { ...this.teacher, ...formDataTeacher }
-      : { id: Date.now(), ...formDataTeacher };
+      : { id: generateRandomString(6), ...formDataTeacher };
 
     if (!this.teacher) {
       console.log('inside add teacher');

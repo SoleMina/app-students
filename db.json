@@ -4,41 +4,19 @@
       "id": "001",
       "name": "React",
       "description": "React is a JavaScript library for building user interfaces.",
-      "price": 10000,
-      "students": [
-        {
-          "id": 1,
-          "name": "John Doe",
-          "email": "johndoe@gmail.com"
-        }
-      ]
+      "price": 10000
     },
     {
       "id": "002",
       "name": "Angular",
       "description": "Angular is a platform and framework for building single-page client applications using HTML and TypeScript.",
-      "price": 20000,
-      "students": [
-        {
-          "id": 1,
-          "name": "Jane Doe",
-          "email": "janedoe@gmail.com"
-        }
-      ]
+      "price": 20000
     },
     {
       "id": "003",
       "name": "Angular",
       "description": "Vue is a progressive framework for building user interfaces.",
-      "price": 15000,
-      "students": [
-        {
-          "id": 1,
-          "name": "Jane Doe",
-          "email": "janedoe@gmail.com"
-        }
-      ],
-      "teacher": "dffddfdf"
+      "price": 15000
     }
   ],
   "teachers": [
@@ -47,49 +25,53 @@
       "name": "John",
       "lastname": "Doesddsd",
       "email": "john@gmail.com",
-      "courseId": "001",
-      "course": "Vue"
+      "courseId": "001"
     },
     {
       "id": "B02",
       "name": "Sthepen",
       "lastname": "Cano",
       "email": "sthepen@gmail.com",
-      "courseId": "002",
-      "course": "React"
+      "courseId": "002"
     },
     {
       "id": "B03",
       "name": "Eduardo",
       "lastname": "Pinedo",
       "email": "eduardo@gmail.com",
-      "courseId": "003",
-      "course": "Angular"
+      "courseId": "003"
+    },
+    {
+      "id": "cP4eSb",
+      "name": "Carlos",
+      "lastname": "Zevallos",
+      "email": "carlos@gmail.com",
+      "courseId": "001"
     }
   ],
   "students": [
     {
-      "id": 1,
+      "id": "S01",
       "name": "Karina",
       "lastname": "Prado",
       "email": "karina.pradogutierrez@gmail.com",
+      "course": "React",
+      "teacher": "Sthepen Cano"
+    },
+    {
+      "id": "S02",
+      "name": "Sara",
+      "lastname": "Carrillo",
+      "email": "sara@gmail.com",
       "course": "Angular",
       "teacher": "Sthepen Cano"
     },
     {
-      "id": 2,
-      "name": "Sara",
-      "lastname": "Carrillo",
-      "email": "sara@gmail.com",
-      "course": "React",
-      "teacher": "Sthepen Cano"
-    },
-    {
-      "id": 3,
+      "id": "S03",
       "name": "Leo",
       "lastname": "Estrada",
       "email": "leoestrada@gmail.com",
-      "course": "React",
+      "course": "Vue",
       "teacher": "Eduardo Pinedo"
     }
   ]

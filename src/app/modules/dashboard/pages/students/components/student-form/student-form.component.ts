@@ -11,6 +11,7 @@ import { Student } from '../../models';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { StudentsService } from '../../../../../../core/services/students.service';
+import { generateRandomString } from '../../../../../../shared/utils';
 
 @Component({
   selector: 'app-student-form',
@@ -57,7 +58,7 @@ export class StudentFormComponent implements OnChanges {
 
     const updatedStudent: Student = this.student
       ? { ...this.student, ...formDataStudent } // Update the existing student
-      : { id: Date.now(), ...formDataStudent }; // Create a new student
+      : { id: generateRandomString(6), ...formDataStudent }; // Create a new student
 
     this.studentData.emit(updatedStudent);
 
