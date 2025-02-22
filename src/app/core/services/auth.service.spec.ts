@@ -32,7 +32,7 @@ describe('AuthService', () => {
         expect(authUser).toBeTruthy();
         expect(localStorage.getItem('access_token')).toBeTruthy();
         expect(spyOnNavigate).toHaveBeenCalled();
-        expect(spyOnNavigate).toHaveBeenCalledWith(['dashboard', 'students']);
+        expect(spyOnNavigate).toHaveBeenCalledWith(['dashboard/students']);
       },
     });
   });
