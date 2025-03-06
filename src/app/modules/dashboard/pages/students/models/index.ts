@@ -1,12 +1,12 @@
 import { Course } from '../../../../../shared/models';
 
 export interface Student {
-  id: number;
+  id: string;
   name: string;
   lastname: string;
   email: string;
   teacher: string;
-  courses: Course[];
+  course: string;
 }
 
 export interface NavbarItems {

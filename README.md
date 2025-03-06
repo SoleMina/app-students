@@ -14,6 +14,16 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 - Courses modules
 - Teachers modules
 
+### Speck tests
+
+- Services (students, courses, teachers)
+- Login component
+- App component
+
+### Api call
+
+- HttpClient
+
 ### Url reference
 
 - http://localhost:4200/dashboard/students
