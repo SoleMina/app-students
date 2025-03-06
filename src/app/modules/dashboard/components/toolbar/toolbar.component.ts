@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { Student } from '../../pages/students/models';
-import { StudentsService } from '../../../../core/services/students.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectAuthUserEmail } from '../../../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,4 +12,10 @@ import { StudentsService } from '../../../../core/services/students.service';
 })
 export class ToolbarComponent {
   @Output() drawerToggle = new EventEmitter();
+
+  authUserEmail$: Observable<string | undefined>;
+
+  constructor(private store: Store) {
+    this.authUserEmail$ = this.store.select(selectAuthUserEmail);
+  }
 }
