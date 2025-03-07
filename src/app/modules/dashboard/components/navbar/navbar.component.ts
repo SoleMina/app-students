@@ -57,6 +57,11 @@ export class NavbarComponent {
       icon: 'person_3',
     },
     {
+      name: 'Enrollments',
+      link: 'enrollments',
+      icon: 'account_box',
+    },
+    {
       name: 'Logout',
       link: 'home',
       icon: 'logout',

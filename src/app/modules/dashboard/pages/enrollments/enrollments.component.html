@@ -1,0 +1,10 @@
+@if (isLoading$ | async) {
+<mat-spinner />
+} @else { @if(error$ | async) {
+<p>Ocurrió un error inesperado</p>
+} @else {
+
+<button (click)="createEnrollment()">Create enrollment</button>
+
+<pre>{{ enrollments$ | async | json }}</pre>
+} }
