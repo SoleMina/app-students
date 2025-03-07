@@ -104,5 +104,12 @@
       "accessToken": "kgfMkfkdl03940dkdmg",
       "role": "Employee"
     }
+  ],
+  "enrollments": [
+    {
+      "id": "dc33D",
+      "studentId": "S01",
+      "courseId": "001"
+    }
   ]
 }

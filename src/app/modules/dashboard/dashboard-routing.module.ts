@@ -27,6 +27,13 @@ const routes: Routes = [
       import('./pages/teachers/teachers.module').then((m) => m.TeachersModule),
   },
   {
+    path: 'enrollments',
+    loadChildren: () =>
+      import('./pages/enrollments/enrollments.module').then(
+        (m) => m.EnrollmentsModule
+      ),
+  },
+  {
     path: 'users',
     canActivate: [adminGuard],
     loadChildren: () =>
