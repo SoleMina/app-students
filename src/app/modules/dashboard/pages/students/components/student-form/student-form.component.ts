@@ -72,7 +72,6 @@ export class StudentFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    console.log(this.studentForm.value, 'this.studentForm.value');
     if (this.studentForm.invalid) {
       this.studentForm.markAllAsTouched();
       return;

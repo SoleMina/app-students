@@ -36,15 +36,11 @@ export class UsersService {
     return this.httpClient.get<User[]>(`${environment.baseApiUrl}/users`);
   }
 
-  // getUsers(): void {
-  //   this.store.dispatch(UserActions.loadUsers());
-  // }
-
   deleteUserById(id: string) {
     this.store.dispatch(UserActions.deleteUserById({ id }));
   }
 
   resetUserState(): void {
-    this.store.dispatch(UserActions.resetState());
+    this.store.dispatch(UserActions.resetUser());
   }
 }

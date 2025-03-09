@@ -21,14 +21,12 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(private userService: UsersService, private store: Store) {
     this.users$ = this.store.select(selectUsers);
-    console.log(this.users$, 'userssss');
 
     this.dataSource = new MatTableDataSource();
 
     // Subscribe
     this.users$.subscribe((users) => {
       this.dataSource.data = users;
-      console.log(this.dataSource.data, 'this.dataSource.data');
     });
   }
   ngOnDestroy(): void {

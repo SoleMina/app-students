@@ -26,7 +26,6 @@ export class StudentDetailsComponent implements OnInit {
 
     this.studentService.getStudentById(studentId).subscribe({
       next: (data) => {
-        console.log(data, 'data get id student');
         this.student = data;
         this.errorMessage = '';
       },

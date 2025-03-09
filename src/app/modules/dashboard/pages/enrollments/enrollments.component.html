@@ -37,8 +37,7 @@
         </div>
       </div>
     </div>
-
-    <pre>{{ enrollments$ | async | json }}</pre>
   </form>
+  <app-enrollments-table [enrollments]="enrollments$" />
 </div>
-} }
+}}

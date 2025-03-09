@@ -20,7 +20,6 @@ export class CourseDetailsComponent implements OnInit {
     private coursesService: CoursesService,
     private activatedRoute: ActivatedRoute
   ) {
-    console.log(activatedRoute, 'activatedRoute');
     //const courseId = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
@@ -31,7 +30,6 @@ export class CourseDetailsComponent implements OnInit {
       next: (data) => {
         this.course = data;
         this.errorMessage = '';
-        console.log(this.course);
       },
       complete: () => {
         this.isLoading = false;
