@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { UserActions } from '../../modules/dashboard/pages/users/store/user.actions';
+import { User } from '../../modules/dashboard/pages/users/models';
+import { environment } from '../../../environments/environment.development';
 
 export interface UsersPagination {
   page: number;
@@ -30,15 +32,13 @@ export interface Support {
 export class UsersService {
   constructor(private httpClient: HttpClient, private store: Store) {}
 
-  getUsers(): Observable<UsersPagination> {
-    return this.httpClient.get<UsersPagination>(
-      'https://reqres.in/api/users?page=2'
-    );
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${environment.baseApiUrl}/users`);
   }
 
-  loadUsers(): void {
-    this.store.dispatch(UserActions.loadUsers());
-  }
+  // getUsers(): void {
+  //   this.store.dispatch(UserActions.loadUsers());
+  // }
 
   deleteUserById(id: string) {
     this.store.dispatch(UserActions.deleteUserById({ id }));
