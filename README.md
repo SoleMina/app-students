@@ -9,10 +9,14 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 - Reactive Forms
 - Modules
 - Directives
+- Guards
+- Routes
+- Redux
 - Dashboard modules
 - Students modules
 - Courses modules
 - Teachers modules
+- Enrollment modules
 
 ### Speck tests
 
@@ -27,3 +31,8 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 ### Url reference
 
 - http://localhost:4200/dashboard/students
+
+### Login
+
+- User: admin@gmail.com
+- Password: 0123456
