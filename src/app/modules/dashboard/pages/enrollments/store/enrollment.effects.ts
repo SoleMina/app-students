@@ -33,6 +33,27 @@ export class EnrollmentEffects {
       )
     );
   });
+
+  createEnrollment$ = createEffect(() => {
+    return this.actions$.pipe(
+      //Listen to this type action
+      ofType(EnrollmentActions.createEnrollment),
+      //Search for enrollment in my database
+      concatMap((action) =>
+        this.enrollmentService.createEnrollment(action.data).pipe(
+          //if its okay
+          map((enrollment) =>
+            EnrollmentActions.createEnrollmentSuccess({ data: enrollment })
+          ),
+
+          //if its failure
+          catchError((error) =>
+            of(EnrollmentActions.createEnrollmentFailure({ error }))
+          )
+        )
+      )
+    );
+  });
   // loadEnrollments$ = createEffect(() => {
   //   return this.actions$.pipe(
 

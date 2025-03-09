@@ -107,9 +107,14 @@
   ],
   "enrollments": [
     {
-      "id": "dc33D",
+      "id": "9c93",
       "studentId": "S01",
-      "courseId": "001"
+      "courseId": "002"
+    },
+    {
+      "id": "0f68",
+      "studentId": "S02",
+      "courseId": "003"
     }
   ]
 }

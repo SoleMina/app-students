@@ -43,13 +43,22 @@ export const reducer = createReducer(
   on(EnrollmentActions.createEnrollment, (state, action) => {
     return {
       ...state,
-      enrollments: [
-        ...state.enrollments,
-        {
-          id: generateRandomString(6),
-          ...action.data,
-        },
-      ],
+      isLoading: true,
+    };
+  }),
+  on(EnrollmentActions.createEnrollmentSuccess, (state, action) => {
+    return {
+      ...state,
+      enrollments: [...state.enrollments, action.data],
+      isLoading: false,
+      error: null,
+    };
+  }),
+  on(EnrollmentActions.createEnrollmentFailure, (state, action) => {
+    return {
+      ...state,
+      isLoading: false,
+      error: action.error,
     };
   }),
   on(EnrollmentActions.resetEnrollment, () => initialState),
