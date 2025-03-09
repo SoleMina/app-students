@@ -4,7 +4,42 @@
 <p>Ocurrió un error inesperado</p>
 } @else {
 
-<button (click)="createEnrollment()">Create enrollment</button>
+<div class="container">
+  <form
+    [formGroup]="enrollmentForm"
+    (ngSubmit)="onSubmit()"
+    class="grid formgrid w-50"
+  >
+    <div class="row">
+      <div class="col-lg-6">
+        <mat-form-field class="w-full">
+          <mat-label>Student</mat-label>
+          <mat-select formControlName="studentId">
+            <mat-option [value]="student.id" *ngFor="let student of students">
+              {{ student.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-6">
+        <mat-form-field class="w-full">
+          <mat-label>Course</mat-label>
+          <mat-select formControlName="courseId">
+            <mat-option [value]="course.id" *ngFor="let course of courses">
+              {{ course.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-12">
+        <div class="d-flex justify-content-end">
+          <button type="submit" mat-flat-button>Save</button>
+        </div>
+      </div>
+    </div>
+    <button (click)="createEnrollment()">Create enrollment</button>
 
-<pre>{{ enrollments$ | async | json }}</pre>
+    <pre>{{ enrollments$ | async | json }}</pre>
+  </form>
+</div>
 } }

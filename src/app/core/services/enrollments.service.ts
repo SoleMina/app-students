@@ -13,4 +13,11 @@ export class EnrollmentsService {
       `${environment.baseApiUrl}/enrollments`
     );
   }
+
+  createEnrollment(data: Omit<Enrollment, 'id'>): Observable<Enrollment> {
+    return this.httpClient.post<Enrollment>(
+      `${environment.baseApiUrl}/enrollments`,
+      data
+    );
+  }
 }
