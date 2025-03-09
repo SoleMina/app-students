@@ -8,9 +8,10 @@ import { enrollmentFeature } from './store/enrollment.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { EnrollmentEffects } from './store/enrollment.effects';
 import { SharedModule } from '../../../../shared/shared.module';
+import { EnrollmentsTableComponent } from './components/enrollments-table/enrollments-table.component';
 
 @NgModule({
-  declarations: [EnrollmentsComponent],
+  declarations: [EnrollmentsComponent, EnrollmentsTableComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -19,8 +19,6 @@ export class HighlightDirective implements OnChanges {
 
   constructor(private elementRef: ElementRef) {}
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes, 'changes');
-
     if (changes['appHighlight']) {
       this.elementRef.nativeElement.style.backgroundColor =
         this.appHighlight || 'yellow';

@@ -39,7 +39,6 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {
     this.enrollments$ = this.store.select(selectEnrollments);
-    console.log(this.enrollments$, 'enrollments$');
     this.isLoading$ = this.store.select(selectIsLoadingEnrollment);
     this.error$ = this.store.select(selectEnrollmentsError);
 
@@ -91,6 +90,15 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
           data: this.enrollmentForm.value,
         })
       );
+
+      this.store.select(selectEnrollmentsError).subscribe((error) => {
+        if (!error) {
+          this.store.dispatch(EnrollmentActions.loadEnrollments());
+        }
+      });
+
+      //Reset form
+      this.enrollmentForm.reset();
     }
   }
 }

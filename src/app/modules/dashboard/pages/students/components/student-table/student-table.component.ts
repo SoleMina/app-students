@@ -102,11 +102,9 @@ export class StudentTableComponent implements AfterViewInit, OnChanges {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result, 'result');
       if (result) {
         this.studentService.updateStudent(result).subscribe({
           next: (updatedStudents) => {
-            console.log(updatedStudents, 'updatedStudents');
             this.dataSource.data = updatedStudents;
           },
           error: (err) => {

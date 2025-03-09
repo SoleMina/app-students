@@ -36,7 +36,7 @@ export const reducer = createReducer(
       users: state.users.filter((user) => user.id !== action.id),
     };
   }),
-  on(UserActions.resetState, () => initialState)
+  on(UserActions.resetUser, () => initialState)
 );
 
 export const userFeature = createFeature({

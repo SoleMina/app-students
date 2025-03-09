@@ -10,6 +10,6 @@ export const UserActions = createActionGroup({
 
     //
     'Delete User By Id': props<{ id: string }>(),
-    'Reset State': emptyProps(),
+    'Reset User': emptyProps(),
   },
 });
