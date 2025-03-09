@@ -1,7 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { EnrollmentActions } from './enrollment.actions';
 import { Enrollment } from '../models';
-import { generateRandomString } from '../../../../../shared/utils';
 
 export const enrollmentFeatureKey = 'enrollment';
 

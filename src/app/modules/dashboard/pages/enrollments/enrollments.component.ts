@@ -39,6 +39,7 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {
     this.enrollments$ = this.store.select(selectEnrollments);
+    console.log(this.enrollments$, 'enrollments$');
     this.isLoading$ = this.store.select(selectIsLoadingEnrollment);
     this.error$ = this.store.select(selectEnrollmentsError);
 

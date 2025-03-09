@@ -17,24 +17,17 @@ export const reducer = createReducer(
   on(UserActions.loadUsers, (state) => {
     return {
       ...state,
-      users: [
-        {
-          id: '8485',
-          name: 'jdfjdf',
-          accessToken: 'djdfkf',
-          email: 'email@gmail.com',
-          password: '0123456',
-          role: 'Admin',
-        },
-        {
-          id: '9494',
-          name: 'seiis',
-          accessToken: 'kfdkfdk',
-          email: 'seiis@gmail.com',
-          password: '0123456',
-          role: 'Admin',
-        },
-      ],
+    };
+  }),
+  on(UserActions.loadUsersSuccess, (state, action) => {
+    return {
+      ...state,
+      users: action.data,
+    };
+  }),
+  on(UserActions.loadUsersFailure, (state, action) => {
+    return {
+      ...state,
     };
   }),
   on(UserActions.deleteUserById, (state, action) => {
