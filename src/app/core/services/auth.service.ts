@@ -23,16 +23,11 @@ export class AuthService {
     this.authUser$ = this.store.select(selectAuthUser);
   }
 
-  // private _authUser$ = new BehaviorSubject<User | null>(null);
-  // authUser$ = this._authUser$.asObservable();
-
   get isAdmin$(): Observable<boolean> {
     return this.authUser$.pipe(map((user) => user?.role === 'Admin'));
   }
 
   login(payload: LoginPayload, next?: () => void): void {
-    // this.authUser$.subscribe((user) => {});
-
     this.httpClient
       .get<User[]>(
         `${environment.baseApiUrl}/users?email=${payload.email}&password=${payload.password}`
@@ -62,40 +57,9 @@ export class AuthService {
           }
         },
       });
-
-    // const loginResult = this.users.find(
-    //   (user) =>
-    //     user.email === payload.email && user.password === payload.password
-    // );
-    // if (!loginResult) {
-    //   alert('Email or password invalid');
-    //   return;
-    // }
-
-    // console.log(loginResult, 'loginResult');
-    // localStorage.setItem('access_token', loginResult.accessToken);
-
-    //Redux
-    //this.store.dispatch(AuthActions.setAuthUser({ user: loginResult }));
-    //this._authUser$.next(loginResult);
-    //this.router.navigate(['dashboard/students']);
   }
 
   isAuthenticated(): Observable<boolean> {
-    //if authService is null then return false
-    //if authService !== null then return true
-    //return this.authUser$.pipe(map((user) => (!!user ? true : false)));
-
-    // const storageUser = this.users.find(
-    //   (user) => user.accessToken === localStorage.getItem('access_token')
-    // );
-
-    // if (storageUser) {
-    //   this.store.dispatch(AuthActions.setAuthUser({ user: storageUser }));
-    // }
-    // this._authUser$.next(storageUser || null);
-    // return this.authUser$.pipe(map((user) => !!user));
-
     return this.httpClient
       .get<User[]>(
         `${environment.baseApiUrl}/users?accessToken=${localStorage.getItem(
@@ -116,7 +80,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('access_token');
-    // this._authUser$.next(null);
     this.store.dispatch(AuthActions.unsetAuthUser());
     this.router.navigate(['auth', 'login']);
   }

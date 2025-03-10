@@ -54,16 +54,4 @@ export class EnrollmentEffects {
       )
     );
   });
-  // loadEnrollments$ = createEffect(() => {
-  //   return this.actions$.pipe(
-
-  //     ofType(EnrollmentActions.loadEnrollments),
-  //     concatMap(() =>
-  //       /** An EMPTY observable only emits completion. Replace with your own observable API request */
-  //       EMPTY.pipe(
-  //         map(data => EnrollmentActions.loadEnrollmentsSuccess({ data })),
-  //         catchError(error => of(EnrollmentActions.loadEnrollmentsFailure({ error }))))
-  //     )
-  //   );
-  // });
 }
