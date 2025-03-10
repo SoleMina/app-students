@@ -17,10 +17,6 @@
       "name": "Vue",
       "description": "Vue is a progressive framework for building user interfaces.",
       "price": 15000
-    },
-    {
-      "id": "2v5kJi",
-      "name": "Javascript"
     }
   ],
   "teachers": [
