@@ -1,9 +1,12 @@
 import {
+  ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -24,13 +27,15 @@ import { Enrollment } from '../../models';
 })
 export class EnrollmentsTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() enrollments: Observable<Enrollment[]> = of([]);
+  @Output() delete: EventEmitter<string> = new EventEmitter<string>();
 
-  displayedColumns: string[] = ['id', 'studentId', 'courseId'];
+  displayedColumns: string[] = ['id', 'studentId', 'courseId', 'actions'];
   dataSource: MatTableDataSource<Enrollment>;
 
   constructor(
     private enrollementsService: EnrollmentsService,
-    private store: Store
+    private store: Store,
+    private cdr: ChangeDetectorRef
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -42,7 +47,7 @@ export class EnrollmentsTableComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this.enrollments.subscribe({
       next: (enrollment: Enrollment[]) => {
-        this.dataSource.data = enrollment;
+        this.dataSource.data = [...enrollment];
       },
     });
   }

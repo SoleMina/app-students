@@ -36,19 +36,37 @@ export class EnrollmentEffects {
 
   createEnrollment$ = createEffect(() => {
     return this.actions$.pipe(
-      //Listen to this type action
       ofType(EnrollmentActions.createEnrollment),
-      //Search for enrollment in my database
       concatMap((action) =>
         this.enrollmentService.createEnrollment(action.data).pipe(
-          //if its okay
           map((enrollment) =>
             EnrollmentActions.createEnrollmentSuccess({ data: enrollment })
           ),
-
-          //if its failure
           catchError((error) =>
             of(EnrollmentActions.createEnrollmentFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  createEnrollmentSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EnrollmentActions.createEnrollmentSuccess),
+      map(() => EnrollmentActions.loadEnrollments())
+    )
+  );
+
+  deleteEnrollmentById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentActions.deleteEnrollment),
+      concatMap((action) =>
+        this.enrollmentService.deleteEnrollmentById(action.id).pipe(
+          map(
+            () => EnrollmentActions.deleteEnrollmentSuccess({ id: action.id }) // Send just the ID
+          ),
+          catchError((error) =>
+            of(EnrollmentActions.deleteEnrollmentFailure({ error }))
           )
         )
       )
