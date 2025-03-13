@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EnrollmentActions } from './store/enrollment.actions';
 import { generateRandomString } from '../../../../shared/utils';
@@ -14,6 +14,7 @@ import { Student } from '../students/models';
 import { StudentsService } from '../../../../core/services/students.service';
 import { CoursesService } from '../../../../core/services/courses.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-enrollments',
@@ -27,8 +28,8 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   isLoading$: Observable<boolean>;
   error$: Observable<unknown>;
 
-  courses: Course[] = [];
-  students: Student[] = [];
+  students$!: Observable<Student[]>;
+  courses$!: Observable<Course[]>;
 
   enrollmentForm: FormGroup;
 
@@ -36,7 +37,8 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     private store: Store,
     private studentsService: StudentsService,
     private coursesService: CoursesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {
     this.enrollments$ = this.store.select(selectEnrollments);
     this.isLoading$ = this.store.select(selectIsLoadingEnrollment);
@@ -59,15 +61,8 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   }
 
   loadStudentsAndCourses(): void {
-    forkJoin([
-      this.coursesService.getCourses(),
-      this.studentsService.getStudents(),
-    ]).subscribe({
-      next: ([courses, students]) => {
-        this.courses = courses;
-        this.students = students;
-      },
-    });
+    this.courses$ = this.coursesService.getCourses();
+    this.students$ = this.studentsService.getStudents();
   }
 
   createEnrollment(): void {
@@ -84,21 +79,49 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.enrollmentForm.invalid) {
       this.enrollmentForm.markAllAsTouched();
-    } else {
-      this.store.dispatch(
-        EnrollmentActions.createEnrollment({
-          data: this.enrollmentForm.value,
-        })
-      );
-
-      this.store.select(selectEnrollmentsError).subscribe((error) => {
-        if (!error) {
-          this.store.dispatch(EnrollmentActions.loadEnrollments());
-        }
-      });
-
-      //Reset form
-      this.enrollmentForm.reset();
+      return;
     }
+
+    this.store.dispatch(
+      EnrollmentActions.createEnrollment({
+        data: this.enrollmentForm.value,
+      })
+    );
+
+    //Reset form
+    this.enrollmentForm.reset();
+    this.enrollmentForm.markAsPristine();
+    this.enrollmentForm.markAsUntouched();
+
+    this.cdr.detectChanges();
+
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Enrollment has been submitted!',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+
+  onDeleteEnrollment(id: string) {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'delete',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.store.dispatch(EnrollmentActions.deleteEnrollment({ id: id }));
+        Swal.fire({
+          title: 'Enrollment has been deleted',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   }
 }

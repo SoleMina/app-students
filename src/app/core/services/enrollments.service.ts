@@ -26,4 +26,10 @@ export class EnrollmentsService {
   resetEnrollmentState(): void {
     this.store.dispatch(EnrollmentActions.resetEnrollment());
   }
+
+  deleteEnrollmentById(id: string): Observable<Enrollment> {
+    return this.httpClient.delete<Enrollment>(
+      `${environment.baseApiUrl}/enrollments/${id}`
+    );
+  }
 }

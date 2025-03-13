@@ -60,6 +60,30 @@ export const reducer = createReducer(
       error: action.error,
     };
   }),
+  on(EnrollmentActions.deleteEnrollment, (state, action) => {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }),
+  on(EnrollmentActions.deleteEnrollmentSuccess, (state, action) => {
+    return {
+      ...state,
+      enrollments: state.enrollments.filter(
+        (enrollment) => enrollment.id !== action.id
+      ),
+      isLoading: false,
+      error: null,
+    };
+  }),
+
+  on(EnrollmentActions.deleteEnrollmentFailure, (state, action) => {
+    return {
+      ...state,
+      isLoading: false,
+      error: action.error,
+    };
+  }),
   on(EnrollmentActions.resetEnrollment, () => initialState),
   on(EnrollmentActions.loadEnrollmentsSuccess, (state, action) => state),
   on(EnrollmentActions.loadEnrollmentsFailure, (state, action) => state)
