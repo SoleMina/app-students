@@ -5,7 +5,7 @@
   <mat-spinner />
   } @else {
   <app-teachers-table
-    [teachers]="teachers"
+    [teachers]="(teachers$ | async) ?? []"
     (delete)="onDelete($event)"
     (edit)="onEditTeacher($event)"
   />

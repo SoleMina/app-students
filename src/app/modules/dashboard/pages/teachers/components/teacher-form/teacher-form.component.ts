@@ -14,6 +14,13 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { generateRandomString } from '../../../../../../shared/utils';
 import { CoursesService } from '../../../../../../core/services/courses.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { TeacherActions } from '../../store/teacher.actions';
+import {
+  selectIsLoadingTeachers,
+  selectTeachers,
+} from '../../store/teacher.selectors';
 
 @Component({
   selector: 'app-teacher-form',
@@ -26,7 +33,9 @@ export class TeacherFormComponent implements OnInit, OnChanges {
   @Input() teacher: Teacher | null = null;
   @Input() teachers: Teacher[] = [];
   @Output() teacherData = new EventEmitter<Teacher>();
-  coursesList: Course[] = [];
+  coursesList$: Observable<Course[]>;
+
+  isLoading$: Observable<boolean>;
 
   teacherForm: FormGroup;
 
@@ -34,7 +43,8 @@ export class TeacherFormComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private teacherService: TeachersService,
     private coursesService: CoursesService,
-    private route: Router
+    private route: Router,
+    private store: Store
   ) {
     this.teacherForm = this.fb.group({
       name: [null, Validators.required],
@@ -42,13 +52,10 @@ export class TeacherFormComponent implements OnInit, OnChanges {
       email: [null, [Validators.required, Validators.email]],
       course: [null, Validators.required],
     });
+    this.isLoading$ = this.store.select(selectIsLoadingTeachers);
   }
   ngOnInit(): void {
-    this.coursesService.getCourses().subscribe({
-      next: (data) => {
-        this.coursesList = [...data];
-      },
-    });
+    this.coursesList$ = this.store.select(selectTeachers);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -72,14 +79,9 @@ export class TeacherFormComponent implements OnInit, OnChanges {
 
     if (!this.teacher) {
       console.log('inside add teacher');
-      this.teacherService.addTeacher(teacherObj).subscribe({
-        next: (data) => {
-          this.teachers = [...data];
-        },
-        complete: () => {
-          this.route.navigate(['dashboard/teachers']);
-        },
-      });
+      this.store.dispatch(
+        TeacherActions.createTeacher({ teacher: teacherObj })
+      );
     } else {
       this.teacherData.emit(teacherObj);
     }

@@ -26,8 +26,8 @@
   "teachers": [
     {
       "id": "B01",
-      "name": "Johnn",
-      "lastname": "Does",
+      "name": "John",
+      "lastname": "Doe",
       "email": "john@gmail.com",
       "course": "Vue"
     },
@@ -46,10 +46,10 @@
       "course": "React"
     },
     {
-      "id": "TJuwLB",
-      "name": "Samantha",
-      "lastname": "Rodriguez",
-      "email": "sam@gmail.com",
+      "id": "z22p9d",
+      "name": "Karina",
+      "lastname": "Prado",
+      "email": "karina.pradogutierrez@gmail.com",
       "course": "Javascript"
     }
   ],

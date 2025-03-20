@@ -32,12 +32,14 @@ export class TeachersService {
       .pipe(concatMap(() => this.getTeachers()));
   }
 
-  updateTeacher(updatedCourse: Teacher): Observable<Teacher[]> {
-    return this.httpClient
-      .patch<Teacher>(
-        `${environment.baseApiUrl}/teachers/${updatedCourse.id}`,
-        updatedCourse
-      )
-      .pipe(concatMap(() => this.getTeachers()));
+  // teachers.service.ts
+  updateTeacherById(
+    id: string,
+    updatedTeacher: Partial<Teacher>
+  ): Observable<Teacher> {
+    return this.httpClient.patch<Teacher>(
+      `${environment.baseApiUrl}/teachers/${id}`,
+      updatedTeacher
+    );
   }
 }

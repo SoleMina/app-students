@@ -1,6 +1,11 @@
 <div class="container">
-  <h2>Teacher:</h2>
-  <p>{{ teacher?.name }} {{ teacher?.lastname }}</p>
-  <h3>Course:</h3>
-  <p>{{ teacher?.course }}</p>
+  <div *ngIf="teacher$ | async as teacher; else errorTemplate">
+    <h1>{{ teacher.name }}</h1>
+    <p>Email: {{ teacher.email }}</p>
+    <p>Course: {{ teacher.course }}</p>
+  </div>
+
+  <ng-template #errorTemplate>
+    <p>{{ errorMessage || "Teacher not found." }}</p>
+  </ng-template>
 </div>

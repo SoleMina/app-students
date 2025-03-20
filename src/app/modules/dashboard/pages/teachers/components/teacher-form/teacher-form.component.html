@@ -22,7 +22,7 @@
         <mat-form-field appearance="outline">
           <mat-select disableRipple formControlName="course">
             <mat-option
-              *ngFor="let course of coursesList"
+              *ngFor="let course of coursesList$ | async"
               [value]="course.name"
             >
               {{ course.name }}

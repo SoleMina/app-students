@@ -4,6 +4,14 @@ import { TeachersService } from '../../../../core/services/teachers.service';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { TeacherDialogComponent } from './components/teacher-dialog/teacher-dialog.component';
+import { Observable } from 'rxjs';
+import { TeacherActions } from './store/teacher.actions';
+import { Store } from '@ngrx/store';
+import {
+  selectIsLoadingTeachers,
+  selectTeacherError,
+  selectTeachers,
+} from './store/teacher.selectors';
 
 @Component({
   selector: 'app-teachers',
@@ -13,24 +21,23 @@ import { TeacherDialogComponent } from './components/teacher-dialog/teacher-dial
   styleUrl: './teachers.component.scss',
 })
 export class TeachersComponent implements OnInit {
-  isLoading: boolean = false;
-  teachers: Teacher[] = [];
+  isLoading$: Observable<boolean>;
+  error$: Observable<unknown>;
+  teachers$: Observable<Teacher[]>;
 
   constructor(
     private teacherService: TeachersService,
-    private matDialog: MatDialog
-  ) {}
+    private matDialog: MatDialog,
+    private store: Store
+  ) {
+    this.teachers$ = this.store.select(selectTeachers);
+    this.isLoading$ = this.store.select(selectIsLoadingTeachers);
+    this.error$ = this.store.select(selectTeacherError);
+    console.log(this.teachers$, 'this.teachers$');
+  }
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.teacherService.getTeachers().subscribe({
-      next: (data) => {
-        this.teachers = [...data];
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
-    });
+    this.store.dispatch(TeacherActions.loadTeachers());
   }
 
   onDelete(id: string) {
@@ -43,11 +50,8 @@ export class TeachersComponent implements OnInit {
       confirmButtonText: 'delete',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.teacherService.deleteTeacherById(id).subscribe({
-          next: (data) => {
-            this.teachers = [...data];
-          },
-        });
+        this.store.dispatch(TeacherActions.deleteTeacher({ id }));
+        this.store.dispatch(TeacherActions.loadTeachers());
         Swal.fire({
           title: 'Teacher has been deleted',
           icon: 'success',
@@ -66,16 +70,14 @@ export class TeachersComponent implements OnInit {
       .subscribe({
         next: (data) => {
           if (!!data) {
-            this.updateTeacher(data);
+            this.store.dispatch(
+              TeacherActions.editTeacher({
+                id: data.id,
+                updatedTeacher: data,
+              })
+            );
           }
         },
       });
-  }
-  updateTeacher(updatedTeacher: Teacher) {
-    this.teacherService.updateTeacher(updatedTeacher).subscribe({
-      next: (data) => {
-        this.teachers = [...data];
-      },
-    });
   }
 }
